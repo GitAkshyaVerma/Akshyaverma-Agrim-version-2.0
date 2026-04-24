@@ -14,7 +14,7 @@ export const productsData = [
   {
     id: 'pharma',
     title: 'Pharmaceuticals',
-    desc: 'We provide trusted, high-quality health essentials and pharmaceutical products. Committed to rigorous safety standards, our pharma division ensures accessible healthcare solutions, from over-the-counter essentials to specialized treatments.',
+    desc: 'We provide trusted, high quality health essentials and pharmaceutical products. Committed to rigorous safety standards, our pharma division ensures accessible healthcare solutions, from over-the-counter essentials to specialized treatments.',
     shortDesc: 'Trusted, high-quality health essentials and pharmaceutical products.',
     icon: <Pill size={48} className="category-icon" />,
     largeIcon: <Pill size={56} color="var(--color-primary)" />,
