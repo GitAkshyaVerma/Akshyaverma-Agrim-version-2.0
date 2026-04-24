@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Leaf } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -20,7 +19,7 @@ const Navbar = () => {
     <nav className={`navbar ${isSolid ? 'scrolled' : ''}`}>
       <div className="container">
         <Link to="/" className="nav-logo">
-          <Leaf className={isSolid ? 'text-primary' : ''} />
+          <img src="/assets/newLogo.png" alt="Agrim Internationals Logo" className="nav-logo-img" />
           Agrim Internationals
         </Link>
         <ul className="nav-links">
