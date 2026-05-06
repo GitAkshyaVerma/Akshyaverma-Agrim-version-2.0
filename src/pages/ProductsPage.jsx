@@ -1,34 +1,29 @@
 import React from 'react';
-import { productsData } from '../data/products';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const ProductsPage = () => {
   return (
-    <div style={{ paddingTop: '120px', paddingBottom: '6rem', backgroundColor: 'var(--color-bg)' }}>
-      <div className="container">
-        <h1 className="section-title">Explore Our Brands</h1>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', maxWidth: '900px', margin: '0 auto' }}>
-          {productsData.map((prod) => (
-            <div key={prod.id} style={{ 
-              display: 'flex', 
-              flexDirection: window.innerWidth < 768 ? 'column' : 'row',
-              gap: '2.5rem', 
-              alignItems: window.innerWidth < 768 ? 'flex-start' : 'center', 
-              backgroundColor: 'var(--color-white)', 
-              padding: '3rem', 
-              borderRadius: '20px', 
-              boxShadow: '0 10px 30px rgba(92, 58, 33, 0.05)' 
-            }}>
-              <div style={{ flexShrink: 0, backgroundColor: 'var(--color-bg-alt)', padding: '1.5rem', borderRadius: '50%' }}>
-                {prod.largeIcon}
-              </div>
-              <div>
-                <h3 style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '1rem' }}>{prod.title}</h3>
-                <p style={{ color: 'var(--color-text-light)', marginBottom: '1.5rem', fontSize: '1.1rem' }}>{prod.desc}</p>
-                <a href={prod.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '1rem' }}>Visit Website</a>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="maintenance-page">
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className="maintenance-video"
+      >
+        <source src="/assets/under-maintainance.mp4" type="video/mp4" />
+      </video>
+      <div className="maintenance-overlay"></div>
+      <div className="maintenance-content">
+        <h1 className="maintenance-title">Our Products Are Getting an Upgrade</h1>
+        <p className="maintenance-desc">
+          We're currently updating our product portfolio to bring you an even better and premium experience. 
+          Please check back soon.
+        </p>
+        <Link to="/" className="btn-product-explore" style={{ padding: '15px 30px', fontSize: '1.1rem' }}>
+          Explore Home <span><ArrowRight size={18} /></span>
+        </Link>
       </div>
     </div>
   );
