@@ -14,6 +14,7 @@ import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ContactPage from './pages/ContactPage';
+import MaintenancePage from './pages/MaintenancePage';
 
 // Helper component to run hook inside Router
 const ScrollManager = () => {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/maintenance" element={<MaintenancePage />} />
       </Routes>
       <Footer />
     </Router>
