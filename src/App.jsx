@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 import './index.css';
 
@@ -15,6 +15,7 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ContactPage from './pages/ContactPage';
 import MaintenancePage from './pages/MaintenancePage';
+import TopistoPage from './pages/TopistoPage';
 
 // Helper component to run hook inside Router
 const ScrollManager = () => {
@@ -22,18 +23,30 @@ const ScrollManager = () => {
   return null;
 };
 
-function App() {
+const AppContent = () => {
+  const location = useLocation();
+  const isTopisto = location.pathname === '/topisto';
+
   return (
-    <Router>
+    <>
       <ScrollManager />
-      <Navbar />
+      {!isTopisto && <Navbar />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/maintenance" element={<MaintenancePage />} />
+        <Route path="/topisto" element={<TopistoPage />} />
       </Routes>
-      <Footer />
+      {!isTopisto && <Footer />}
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

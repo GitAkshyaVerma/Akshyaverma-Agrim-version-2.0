@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="container">
         <Link to="/" className="nav-logo">
           <img src="/assets/newLogo.png" alt="Agrim Internationals Logo" className="nav-logo-img" />
-          Agrim Internationals
+          Agrim International Fze
         </Link>
         <ul className="nav-links">
           <li><Link to="/#home">Home</Link></li>

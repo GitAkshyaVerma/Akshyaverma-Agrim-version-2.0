@@ -120,9 +120,6 @@ ul {
   height: 60px;
   width: 60px;
   object-fit: contain;
-  background-color: rgba(251, 248, 241, 0.95);
-  border-radius: 50%;
-
 }
 
 .navbar.scrolled .nav-logo {

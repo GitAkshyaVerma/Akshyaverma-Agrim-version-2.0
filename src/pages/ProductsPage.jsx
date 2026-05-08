@@ -41,9 +41,15 @@ const ProductsPage = () => {
               <div className="product-card-content">
                 <h3 className="product-card-title">{prod.title}</h3>
                 <p className="product-card-desc">{prod.desc}</p>
-                <Link to="/maintenance" className="btn-product-explore">
-                  Explore <span><ArrowRight size={18} /></span>
-                </Link>
+                {prod.id === 'sauces' ? (
+                  <Link to="/topisto" className="btn-product-explore">
+                    Explore <span><ArrowRight size={18} /></span>
+                  </Link>
+                ) : (
+                  <Link to="/maintenance" className="btn-product-explore">
+                    Explore <span><ArrowRight size={18} /></span>
+                  </Link>
+                )}
               </div>
             </div>
           ))}
