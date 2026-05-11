@@ -1,31 +1,34 @@
-# Hero Section - Black Bars Fix
+# Reverting Image Counter
 
-The user is complaining about black bars on the left and right of the images in the hero carousel, and wants a proper, dynamic fix for both desktop and mobile.
+The user requested: "not required number, move the dots as available earlier as it is".
 
-## Current State
-- `.hero.hero-carousel` has `aspect-ratio: 16 / 9` and `max-height: calc(100vh - var(--navbar-height))`.
-- `.carousel-img` has `object-fit: contain` and `background: #1a110b;`.
+I need to revert the changes made to the image counter. Specifically:
+1. In `Hero.jsx`, remove the `.carousel-indicators` wrapper and `.carousel-counter`.
+2. Revert back to just the `.carousel-dots` div.
+3. In `index.css`, remove the `.carousel-indicators` and `.carousel-counter` styling.
+4. Update `.carousel-dots` to return to its original styling:
+```css
+.carousel-dots {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+```
 
-When the screen is wider than 16:9, the `max-height` restriction kicks in. The container stays 16:9, but it might not fill the full width of the screen, or if it does, the `object-fit: contain` with a dark background shows black bars on the sides because the image is scaled down to fit the height constraint.
+Wait, does the user want the dots "as available earlier as it is" meaning centered, or just "move the dots [to the right] as available earlier"? The previous request was "move the image counter in hero section to the right". 
+If they say "move the dots as available earlier as it is", they probably mean "I didn't want the number, just move the dots (which were available earlier) to the right".
+Let me re-read carefully: "not required number, move the dots as available earlier as it is"
+This translates to: "The number is not required. Move the dots, which were already there earlier, [to the right], just as they are."
+I will remove the number and keep the dots on the right. If they want the dots centered, "as available earlier" could mean centered.
+Actually, "move the dots as available earlier as it is" is slightly ambiguous.
+"move the dots [to the right]" -> the previous command was "move the image counter in hero section to the right".
+So they want the dots on the right, but no numbers.
+Let me put the dots back to how they were structured, but positioned on the right.
 
-Actually, if the container is 16:9 and the image is 16:9, `object-fit: contain` and `object-fit: cover` should do the exact same thing *within that container*. 
-
-However, if the screen is wider than 16:9 (e.g., ultrawide monitor), a `width: 100%` container with `max-height: calc(100vh - 68px)` will *lose* its 16:9 aspect ratio if the height constraint is reached.
-Wait, `aspect-ratio` with a `max-height` means the width will be constrained if the height is constrained? No, `width: 100%` forces the width. If height is constrained by `max-height`, the `aspect-ratio` is broken. The container becomes wider than 16:9.
-Then `object-fit: contain` will letterbox the image on the left and right (black bars).
-
-## The Proper Fix
-
-A modern, premium hero section should *never* have black bars. It should always fill its container, using `object-fit: cover`.
-To prevent excessive cropping while ensuring no black bars:
-1.  **Remove `aspect-ratio: 16 / 9` from the container.** Let it be a flexible height.
-2.  **Use `object-fit: cover` for the images.** This guarantees no black bars.
-3.  **Define appropriate heights for desktop and mobile.** 
-    - E.g., `min-height: 60vh; height: calc(100vh - var(--navbar-height));` for a full-screen feel.
-    - Or maybe a fixed responsive height like `height: 70vh` on desktop, `height: 60vh` on mobile.
-4.  **Remove the dark background** from the image/container.
-
-Let's check `Hero.jsx`. We have `desktopSlides` (16:9) and `mobileSlides` (9:16).
-Since we have different aspect ratio images for mobile and desktop, `object-fit: cover` is perfectly safe. It will crop slightly depending on the exact screen size, but the images are specifically chosen for their respective orientations.
-
-Let's adjust `.hero.hero-carousel` and `.carousel-img`.
+Wait, if they meant "move the dots back to where they were", they would say "move the dots back". "move the dots... as it is" probably means "just move the dots themselves to the right, keep them as they are".
+I will position `.carousel-dots` at `bottom: 2rem; right: 2rem;` and remove the number wrapper.
