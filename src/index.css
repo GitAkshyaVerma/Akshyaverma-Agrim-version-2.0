@@ -45,6 +45,8 @@ body {
   color: var(--color-text-main);
   line-height: 1.6;
   overflow-x: hidden;
+  /* Push all page content down so the fixed navbar doesn't overlap it */
+  padding-top: var(--navbar-height);
 }
 
 a {
@@ -212,22 +214,19 @@ ul {
 }
 
 .burger-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  /* Subtle dark hover for the light solid navbar */
+  background: rgba(92, 58, 33, 0.08);
 }
 
 .burger-line {
   display: block;
   width: 24px;
   height: 2px;
-  background: #fff;
+  /* Navbar is always solid/light, so the burger lines are permanently brown */
+  background: var(--color-primary);
   border-radius: 2px;
   transition: transform 0.35s ease, opacity 0.25s ease, background 0.3s ease;
   transform-origin: center;
-}
-
-/* Solid navbar — lines turn dark */
-.navbar.scrolled .burger-line {
-  background: var(--color-primary);
 }
 
 /* Animate to ✕ when open */
@@ -407,7 +406,6 @@ ul {
   /* Dynamic height: fills available viewport space */
   height: calc(100vh - var(--navbar-height));
   min-height: 400px; /* Sane minimum for very short screens */
-  margin-top: var(--navbar-height);
   overflow: hidden;
   padding: 0;
   display: block;
@@ -427,11 +425,15 @@ ul {
 
 /* Each slide occupies exactly the viewport width */
 .carousel-slide {
-  min-width: 100%;
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
   height: 100%;
   position: relative;
-  flex-shrink: 0;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Slide image — cover ensures the image always fills the container dynamically without black bars */
@@ -445,10 +447,17 @@ ul {
   pointer-events: none;
 }
 
-/* Portrait (mobile) images — anchor to top so subject isn't cropped */
+/* Portrait (mobile) images — ensure full image is visible top-to-bottom */
 @media (max-width: 767px) {
+  .hero.hero-carousel {
+    /* Match the 9:16 portrait image ratio exactly so it never crops */
+    height: auto;
+    aspect-ratio: 9 / 16;
+    max-height: none;
+  }
+  
   .carousel-img {
-    object-position: top center;
+    object-position: center center;
   }
 }
 

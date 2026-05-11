@@ -52,7 +52,7 @@ const Navbar = () => {
         <div className="container">
           {/* Logo */}
           <Link to="/" className="nav-logo">
-            <img src="/assets/newLogo.png" alt="Agrim Internationals Logo" className="nav-logo-img" />
+            <img src={`${import.meta.env.BASE_URL}assets/newLogo.png`} alt="Agrim Internationals Logo" className="nav-logo-img" />
             <span className="nav-brand-text">Agrim International Fze</span>
           </Link>
 

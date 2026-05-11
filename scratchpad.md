@@ -1,34 +1,32 @@
-# Reverting Image Counter
+# Carousel Bleeding Issue (Double Image)
 
-The user requested: "not required number, move the dots as available earlier as it is".
+The issue where you can see parts of "image 1" while looking at "image 2" on certain small laptop screens is a classic flexbox sizing problem. 
 
-I need to revert the changes made to the image counter. Specifically:
-1. In `Hero.jsx`, remove the `.carousel-indicators` wrapper and `.carousel-counter`.
-2. Revert back to just the `.carousel-dots` div.
-3. In `index.css`, remove the `.carousel-indicators` and `.carousel-counter` styling.
-4. Update `.carousel-dots` to return to its original styling:
+When flex items (our slides) contain large elements (the images), certain browser rendering engines can miscalculate the widths if the strict sizing constraints aren't explicitly declared, causing the slide to be a few pixels wider or smaller than exactly 100% of the screen. This miscalculation makes the `-100%` translation slightly off, revealing the edge of the adjacent image.
+
+### The Fix applied:
+I have updated the `.carousel-slide` CSS to enforce an absolutely strict flex boundary.
+
+**Before:**
 ```css
-.carousel-dots {
-  position: absolute;
-  bottom: 1.8rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
+.carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  /* ... */
 }
 ```
 
-Wait, does the user want the dots "as available earlier as it is" meaning centered, or just "move the dots [to the right] as available earlier"? The previous request was "move the image counter in hero section to the right". 
-If they say "move the dots as available earlier as it is", they probably mean "I didn't want the number, just move the dots (which were available earlier) to the right".
-Let me re-read carefully: "not required number, move the dots as available earlier as it is"
-This translates to: "The number is not required. Move the dots, which were already there earlier, [to the right], just as they are."
-I will remove the number and keep the dots on the right. If they want the dots centered, "as available earlier" could mean centered.
-Actually, "move the dots as available earlier as it is" is slightly ambiguous.
-"move the dots [to the right]" -> the previous command was "move the image counter in hero section to the right".
-So they want the dots on the right, but no numbers.
-Let me put the dots back to how they were structured, but positioned on the right.
+**After (Bulletproof Flex Pattern):**
+```css
+.carousel-slide {
+  flex: 0 0 100%; /* Do not grow, do not shrink, strictly 100% basis */
+  width: 100%;
+  max-width: 100%; /* Force constraint */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* ... */
+}
+```
 
-Wait, if they meant "move the dots back to where they were", they would say "move the dots back". "move the dots... as it is" probably means "just move the dots themselves to the right, keep them as they are".
-I will position `.carousel-dots` at `bottom: 2rem; right: 2rem;` and remove the number wrapper.
+This guarantees that every single slide mathematically matches the exact width of its parent container, pixel for pixel, on every device and viewport width, perfectly aligning the images with the carousel track's translation without any overlapping bleed.

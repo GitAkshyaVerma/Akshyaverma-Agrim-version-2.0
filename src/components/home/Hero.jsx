@@ -3,11 +3,11 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 // ─── Desktop slides (16:9 landscape) ──────────────────────────────────────
 const desktopSlides = [
   {
-    src: '/assets/mainHeroSection/TOBO-16-9.jpeg',
+    src: `${import.meta.env.BASE_URL}assets/mainHeroSection/TOBO-16-9.jpeg`,
     alt: 'TOBO Product Range',
   },
   {
-    src: '/assets/mainHeroSection/TOMBO-ALL-16x9.jpeg',
+    src: `${import.meta.env.BASE_URL}assets/mainHeroSection/TOMBO-ALL-16x9.jpeg`,
     alt: 'TOMBO Product Range',
   },
 ];
@@ -15,7 +15,7 @@ const desktopSlides = [
 // ─── Mobile slides (9:16 portrait) — add more images here later ───────────
 const mobileSlides = [
   {
-    src: '/assets/mainHeroSection/mobile/TOBO-9-16.jpeg',
+    src: `${import.meta.env.BASE_URL}assets/mainHeroSection/mobile/TOBO-9-16.jpeg`,
     alt: 'TOBO Product Range',
   },
   // Add more mobile slides here when ready
