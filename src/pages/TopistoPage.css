@@ -26,7 +26,8 @@
   position: absolute;
   top: -5%;
   left: -5%;
-  width: 110%; /* slightly larger to accommodate parallax */
+  width: 110%;
+  /* slightly larger to accommodate parallax */
   height: 110%;
   z-index: -1;
   will-change: transform;
@@ -56,8 +57,37 @@
   z-index: 100;
 }
 
+.topisto-header .header-back {
+  display: flex;
+  align-items: center;
+}
+
+.topisto-header .btn-back {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.topisto-header .btn-back:hover {
+  opacity: 0.7;
+}
+
+.topisto-header .header-left {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .topisto-header .brand-logo {
-  height: 50px;
+  height: 200px;
   object-fit: contain;
 }
 
@@ -65,6 +95,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  margin-left: auto;
 }
 
 .topisto-header .nav-menu {
@@ -91,13 +122,16 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, width 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .topisto-header .btn-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Body */
@@ -157,44 +191,83 @@
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); }
-  50% { transform: translateY(-15px); filter: drop-shadow(0 40px 50px rgba(0,0,0,0.4)); }
-  100% { transform: translateY(0px); filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); }
+  0% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+  }
+
+  50% {
+    transform: translateY(-15px);
+    filter: drop-shadow(0 40px 50px rgba(0, 0, 0, 0.4));
+  }
+
+  100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+  }
 }
 
 .float-anim {
   animation: float 6s ease-in-out infinite;
 }
 
-.hero-left-col {
+.marquee-container {
   position: absolute;
-  left: 6%;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 0;
+  top: 1rem;
+  width: 100%;
+  overflow: hidden;
   z-index: 3;
-  max-width: 300px;
   color: white;
+  display: flex;
+  white-space: nowrap;
 }
 
-.hero-left-col .hero-heading {
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 50s linear infinite;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding-right: 3rem;
+  /* Matches the gap for a seamless loop */
+}
+
+.marquee-heading {
   font-family: 'Outfit', sans-serif;
-  font-size: 3.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.hero-left-col .hero-desc {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  opacity: 0.9;
+.marquee-separator {
+  font-size: 2rem;
+  color: #ffd166;
+  /* Elegant gold separator */
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .hero-right-col {
   position: absolute;
   right: 6%;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 1px;
   z-index: 3;
   color: white;
   text-align: center;
@@ -221,14 +294,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
-}
-
-.size-circle:hover, .size-circle.active {
-  background-color: white;
-  color: #e63946;
 }
 
 .size-circle span {
@@ -321,5 +388,128 @@
 
 .topisto-footer .btn-shop-now:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Mobile Responsiveness ─── */
+@media (max-width: 768px) {
+  .topisto-header {
+    padding: 0 1rem;
+    height: 70px;
+  }
+
+  .topisto-header .brand-logo {
+    height: 100px;
+    /* Scale down the large logo on mobile */
+  }
+
+  .topisto-header .btn-back .back-text {
+    display: none;
+    /* Hide 'Back' text on mobile to save space */
+  }
+
+  .topisto-header .header-right {
+    gap: 1rem;
+  }
+
+  .topisto-header .btn-enquire {
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+  }
+
+  .topisto-header .btn-enquire .btn-text {
+    display: none;
+  }
+
+  /* Marquee Carousel (Mobile overrides) */
+  .marquee-container {
+    top: 1.1rem;
+    /* Right under the header */
+  }
+
+  .marquee-heading {
+    font-size: 1rem;
+  }
+
+  .marquee-separator {
+    font-size: 1.2rem;
+  }
+
+  .marquee-content {
+    gap: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Hero background text */
+  .hero-bg-text {
+    font-size: 28vw;
+    /* Fill screen width better on mobile */
+  }
+
+  /* Main product image */
+  .hero-subject {
+    height: 40vh;
+    /* Make slightly smaller to fit between text and sizes */
+  }
+
+  /* Right column (Size selectors) */
+  .hero-right-col {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0rem;
+    /* Above mobile footer */
+    width: 100%;
+  }
+
+  .flavor-text {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .size-selectors {
+    gap: 0.8rem;
+    flex-direction: row;
+    /* Horizontal row on mobile */
+    justify-content: center;
+  }
+
+  .size-circle {
+    width: 45px;
+    height: 45px;
+  }
+
+  .size-circle span {
+    font-size: 0.9rem;
+  }
+
+  .size-circle small {
+    font-size: 0.6rem;
+  }
+
+  /* Footer */
+  .topisto-footer {
+    padding: 0 1rem;
+    height: auto;
+    padding-bottom: 1.5rem;
+    flex-direction: column-reverse;
+    /* Social icons at bottom */
+    gap: 1rem;
+  }
+
+  .topisto-footer .footer-center {
+    margin-top: 1rem;
+  }
+
+  .topisto-footer .line {
+    width: 30px;
+    /* Shorter decorative lines */
+  }
+
+  .topisto-footer .choose-size-text {
+    font-size: 0.85rem;
+    text-align: center;
+  }
 }

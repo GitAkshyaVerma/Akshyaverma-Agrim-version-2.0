@@ -6,7 +6,7 @@ import './TopistoPage.css';
 const TopistoPage = () => {
   // --- Scroll Parallax ---
   const { scrollYProgress } = useScroll();
-  
+
   // Smooth out the scroll progress
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -72,12 +72,12 @@ const TopistoPage = () => {
     <div className="topisto-wrapper">
       {/* Scroll container gives us the scrollbar */}
       <div className="topisto-scroll-area"></div>
-      
+
       {/* Fixed container holds the actual visual content */}
       <div className="topisto-fixed-container">
-        
+
         {/* Background Layers */}
-        <motion.div 
+        <motion.div
           className="topisto-bg-layers"
           style={{ x: bgX, y: bgY, scale: backgroundScale }}
         >
@@ -89,25 +89,32 @@ const TopistoPage = () => {
 
         {/* Header */}
         <header className="topisto-header">
+          <div className="header-back">
+            <Link to="/" className="btn-back">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span className="back-text">Back to Portfolio</span>
+            </Link>
+          </div>
           <div className="header-left">
             <Link to="/">
               <img src="/assets/topisto/mohan_logo.png" alt="Mohan Topisto Logo" className="brand-logo" />
             </Link>
           </div>
           <div className="header-right">
-            <nav className="nav-menu">
-              <Link to="/">Home</Link>
-              <Link to="/#products">Products</Link>
-              <Link to="/contact">Contact</Link>
-            </nav>
-            <a href="#" className="btn-pill btn-place-order">Place order ↗</a>
+            <a href="#" className="btn-pill btn-enquire" aria-label="Enquire now">
+              <span className="btn-text">Enquire now</span>
+              <svg className="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
           </div>
         </header>
 
         {/* Main Content */}
         <main className="topisto-body">
           {/* Giant Text */}
-          <motion.div 
+          <motion.div
             className="hero-bg-text-container"
             style={{ x: mgX, y: mgY }}
           >
@@ -115,7 +122,7 @@ const TopistoPage = () => {
           </motion.div>
 
           {/* Foreground Subjects */}
-          <motion.div 
+          <motion.div
             className="subject-layers"
             style={{ x: fgX, y: fgY }}
           >
@@ -133,19 +140,41 @@ const TopistoPage = () => {
             </motion.div>
           </motion.div>
 
-          {/* Left Column */}
-          <div className="hero-left-col">
-            <h2 className="hero-heading">Pure Taste</h2>
-            <p className="hero-desc">
-              Crafted from nature's best, every pack is a blend of pure ingredients and vibrant flavors. Designed to enrich your meals and uplift your dishes. A little moment of joy in every bite.
-            </p>
+          {/* Left Column - Now a running marquee */}
+          <div className="hero-left-col marquee-container">
+            <div className="marquee-track">
+              <div className="marquee-content">
+                {[...Array(4)].map((_, i) => (
+                  <React.Fragment key={`marquee-1-${i}`}>
+                    <h2 className="marquee-heading">Favourite of Every Kitchen</h2>
+                    <span className="marquee-separator">✦</span>
+                    <h2 className="marquee-heading">Freshness of Tomatoes</h2>
+                    <span className="marquee-separator">✦</span>
+                    <h2 className="marquee-heading">Flavour Meets Fun</h2>
+                    <span className="marquee-separator">✦</span>
+                  </React.Fragment>
+                ))}
+              </div>
+              <div className="marquee-content" aria-hidden="true">
+                {[...Array(4)].map((_, i) => (
+                  <React.Fragment key={`marquee-2-${i}`}>
+                    <h2 className="marquee-heading">Favourite of Every Kitchen</h2>
+                    <span className="marquee-separator">✦</span>
+                    <h2 className="marquee-heading">Freshness of Tomatoes</h2>
+                    <span className="marquee-separator">✦</span>
+                    <h2 className="marquee-heading">Flavour Meets Fun</h2>
+                    <span className="marquee-separator">✦</span>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Right Column */}
           <div className="hero-right-col">
-            <p className="flavor-text">Tomato Paste</p>
+            <p className="flavor-text">AVAILABLE SIZES</p>
             <div className="size-selectors">
-              <div className="size-circle active">
+              <div className="size-circle">
                 <span>1</span>
                 <small>kg</small>
               </div>
@@ -174,15 +203,15 @@ const TopistoPage = () => {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
             </a>
           </div>
-          
+
           <div className="footer-center">
             <div className="line"></div>
-            <span className="choose-size-text">Choose your size</span>
+            <span className="choose-size-text">Flavours You Love, Sizes You Need</span>
             <div className="line"></div>
           </div>
-          
+
           <div className="footer-right">
-            <a href="#" className="btn-pill btn-shop-now">Shop Now</a>
+            {/* Shop Now button removed */}
           </div>
         </footer>
       </div>
