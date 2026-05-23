@@ -1090,6 +1090,37 @@
 }
 
 @media (max-width: 768px) {
+  .tombo-curtain {
+    height: 100vh;
+    height: 100dvh;
+    padding: 1rem;
+  }
+
+  .tombo-curtain-glass {
+    padding: 2.5rem 1.25rem;
+    gap: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .tombo-curtain-logo {
+    max-width: 140px;
+  }
+
+  .tombo-curtain-title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+  }
+
+  .tombo-curtain-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+  }
+
+  .tombo-curtain-btn {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+
   .tombo-hero-section {
     display: flex;
     flex-direction: column;
