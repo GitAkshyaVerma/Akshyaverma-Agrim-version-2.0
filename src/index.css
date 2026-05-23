@@ -56,8 +56,10 @@ body {
   padding-top: var(--navbar-height);
 }
 
-body.no-navbar {
-  padding-top: 0;
+body.no-navbar,
+body:has(.tombo-page),
+body:has(.topisto-wrapper) {
+  padding-top: 0 !important;
 }
 
 a {
