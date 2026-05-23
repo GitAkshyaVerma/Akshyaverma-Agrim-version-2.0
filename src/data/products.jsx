@@ -9,7 +9,7 @@ export const productsData = [
     shortDesc: 'Your night, our spirit. Unleash the Tombo vibe.',
     icon: <Wine size={48} className="category-icon" />,
     largeIcon: <Wine size={56} color="var(--color-primary)" />,
-    link: '#'
+    link: '/tombo'
   },
   {
     id: 'pharma',
@@ -18,7 +18,7 @@ export const productsData = [
     shortDesc: 'From gentle beginnings to confident living, keeping babies dry and you unstoppable.',
     icon: <Pill size={48} className="category-icon" />,
     largeIcon: <Pill size={56} color="var(--color-primary)" />,
-    link: '#'
+    link: '/maintenance'
   },
   {
     id: 'candies',
@@ -27,7 +27,7 @@ export const productsData = [
     shortDesc: 'Quality lollipops for every sweet moment, Tobo Candies Crafted for Smiles.',
     icon: <Candy size={48} className="category-icon" />,
     largeIcon: <Candy size={56} color="var(--color-primary)" />,
-    link: '#'
+    link: '/maintenance'
   },
   {
     id: 'sauces',
@@ -36,6 +36,6 @@ export const productsData = [
     shortDesc: 'The heart of every dish starts with freshness. Topisto Tomato Mix delivers the rich, natural taste of sun ripened tomatoes',
     icon: <Droplets size={48} className="category-icon" />,
     largeIcon: <Droplets size={56} color="var(--color-primary)" />,
-    link: '#'
+    link: '/topisto'
   }
 ]
