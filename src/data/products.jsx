@@ -32,8 +32,8 @@ export const productsData = [
   {
     id: 'sauces',
     title: 'Tomatoes Pastes',
-    desc: 'The secret to a great meal starts with the right base. Our Topisto Tomato Mix is made from sun ripened tomatoes, concentrated to give you a rich, deep red color and a naturally thick texture. It’s the perfect ingredient for stews, soups, and traditional jollof rice, adding an authentic flavor that tastes just like home. We focus on simple, high quality ingredients so you can bring bold, gourmet taste to your kitchen table with ease. Whether you’re cooking a quick family dinner or a festive feast, our tomato paste makes every dish stand out.',
-    shortDesc: 'The heart of every dish starts with freshness. Topisto Tomato Mix delivers the rich, natural taste of sun ripened tomatoes',
+    desc: 'Topisto offers flavourful tomato mixes and cooking blends designed for Nigerian meals, helping households, caterers, and food operators prepare richer, consistent, and convenient everyday dishes.',
+    shortDesc: 'Rich tomato blends crafted for bold, flavourful African cooking.',
     icon: <Droplets size={48} className="category-icon" />,
     largeIcon: <Droplets size={56} color="var(--color-primary)" />,
     link: '/topisto'

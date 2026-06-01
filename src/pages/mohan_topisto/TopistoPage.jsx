@@ -1,9 +1,21 @@
-import React, { useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, useScroll, useTransform, useSpring, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './TopistoPage.css';
+const MARQUEE_TEXTS = [
+  "Rich Taste With Radiant Colour",
+  "Rooted In Nigerian Flavours",
+  "Reliable Flavour Every Time",
+  "Reasonably Priced For Families",
+  "Ready To Use Easily",
+  "Right For Every Kitchen"
+];
 
 const TopistoPage = () => {
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isEnquireOpen, setIsEnquireOpen] = useState(false);
+  const [activeFlavourIndex, setActiveFlavourIndex] = useState(0);
+
   // --- Scroll Parallax ---
   const { scrollYProgress } = useScroll();
 
@@ -12,6 +24,18 @@ const TopistoPage = () => {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
+  });
+
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
+    if (latest < 0.165) {
+      setActiveFlavourIndex(0);
+    } else if (latest < 0.5) {
+      setActiveFlavourIndex(1);
+    } else if (latest < 0.835) {
+      setActiveFlavourIndex(2);
+    } else {
+      setActiveFlavourIndex(3);
+    }
   });
 
   // Calculate opacities for 4 slides (Continuous crossfade)
@@ -35,39 +59,6 @@ const TopistoPage = () => {
   // Cinematic Scale: scales from 1 to 1.15 over the whole scroll
   const backgroundScale = useTransform(smoothProgress, [0, 1], [1, 1.15]);
 
-  // --- Mouse Parallax ---
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth mouse values
-  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      // Normalize between -1 and 1
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  // Foreground: moves towards mouse (more intensely)
-  const fgX = useTransform(smoothMouseX, [-1, 1], [-40, 40]);
-  const fgY = useTransform(smoothMouseY, [-1, 1], [-40, 40]);
-
-  // Midground (Text): moves away from mouse
-  const mgX = useTransform(smoothMouseX, [-1, 1], [20, -20]);
-  const mgY = useTransform(smoothMouseY, [-1, 1], [20, -20]);
-
-  // Background: moves slightly away from mouse
-  const bgX = useTransform(smoothMouseX, [-1, 1], [10, -10]);
-  const bgY = useTransform(smoothMouseY, [-1, 1], [10, -10]);
-
   return (
     <div className="topisto-wrapper">
       {/* Scroll container gives us the scrollbar */}
@@ -79,12 +70,12 @@ const TopistoPage = () => {
         {/* Background Layers */}
         <motion.div
           className="topisto-bg-layers"
-          style={{ x: bgX, y: bgY, scale: backgroundScale }}
+          style={{ scale: backgroundScale }}
         >
-          <motion.div className="topisto-bg-layer" style={{ opacity: opacity1, backgroundImage: "url('/assets/topisto/1_background.jpeg')" }} />
-          <motion.div className="topisto-bg-layer" style={{ opacity: opacity2, backgroundImage: "url('/assets/topisto/2_background.jpeg')" }} />
-          <motion.div className="topisto-bg-layer" style={{ opacity: opacity3, backgroundImage: "url('/assets/topisto/3_background.jpeg')" }} />
-          <motion.div className="topisto-bg-layer" style={{ opacity: opacity4, backgroundImage: "url('/assets/topisto/4_background.jpeg')" }} />
+          <motion.div className="topisto-bg-layer topisto-bg-layer-1" style={{ opacity: opacity1 }} />
+          <motion.div className="topisto-bg-layer topisto-bg-layer-2" style={{ opacity: opacity2 }} />
+          <motion.div className="topisto-bg-layer topisto-bg-layer-3" style={{ opacity: opacity3 }} />
+          <motion.div className="topisto-bg-layer topisto-bg-layer-4" style={{ opacity: opacity4 }} />
         </motion.div>
 
         {/* Header */}
@@ -101,120 +92,266 @@ const TopistoPage = () => {
             </Link>
           </div>
           <div className="header-right">
-            <a href="#" className="btn-pill btn-enquire" aria-label="Enquire now">
+            <button className="btn-about" onClick={() => setIsAboutOpen(true)} aria-label="About Us">
+              <span className="btn-text">About Us</span>
+              <svg className="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+            </button>
+            <button className="btn-pill btn-enquire" onClick={() => setIsEnquireOpen(true)} aria-label="Enquire now">
               <span className="btn-text">Enquire now</span>
               <svg className="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
-            </a>
+            </button>
           </div>
         </header>
 
         {/* Main Content */}
         <main className="topisto-body">
           {/* Giant Text */}
-          <motion.div
-            className="hero-bg-text-container"
-            style={{ x: mgX, y: mgY }}
-          >
+          <div className="hero-bg-text-container">
             <h1 className="hero-bg-text">TOPISTO</h1>
-          </motion.div>
+          </div>
 
           {/* Foreground Subjects */}
-          <motion.div
-            className="subject-layers"
-            style={{ x: fgX, y: fgY }}
-          >
+          <div className="subject-layers">
             <motion.div className="subject-layer" style={{ opacity: opacity1, x: x1, scale: scale1 }}>
-              <img src="/assets/topisto/1_subject.png" className="hero-subject float-anim" alt="Topisto Product 1" />
+              <div className="subject-container">
+                <img src="/assets/topisto/1_subject.png" className="hero-subject float-anim" alt="Classic Tomato Mix" />
+              </div>
             </motion.div>
             <motion.div className="subject-layer" style={{ opacity: opacity2, x: x2, scale: scale2 }}>
-              <img src="/assets/topisto/2_subject.png" className="hero-subject float-anim" alt="Topisto Product 2" />
+              <div className="subject-container">
+                <img src="/assets/topisto/2_subject.png" className="hero-subject float-anim" alt="Goat Meat Flavour" />
+              </div>
             </motion.div>
             <motion.div className="subject-layer" style={{ opacity: opacity3, x: x3, scale: scale3 }}>
-              <img src="/assets/topisto/3_subject.png" className="hero-subject float-anim" alt="Topisto Product 3" />
+              <div className="subject-container">
+                <img src="/assets/topisto/3_subject.png" className="hero-subject float-anim" alt="Chicken Flavour" />
+              </div>
             </motion.div>
             <motion.div className="subject-layer" style={{ opacity: opacity4, x: x4, scale: scale4 }}>
-              <img src="/assets/topisto/4_subject.png" className="hero-subject float-anim" alt="Topisto Product 4" />
+              <div className="subject-container">
+                <img src="/assets/topisto/4_subject.png" className="hero-subject float-anim" alt="Fish Flavour" />
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
+
+
 
           {/* Left Column - Now a running marquee */}
           <div className="hero-left-col marquee-container">
             <div className="marquee-track">
               <div className="marquee-content">
-                {[...Array(4)].map((_, i) => (
+                {[...Array(3)].map((_, i) => (
                   <React.Fragment key={`marquee-1-${i}`}>
-                    <h2 className="marquee-heading">Favourite of Every Kitchen</h2>
-                    <span className="marquee-separator">✦</span>
-                    <h2 className="marquee-heading">Freshness of Tomatoes</h2>
-                    <span className="marquee-separator">✦</span>
-                    <h2 className="marquee-heading">Flavour Meets Fun</h2>
-                    <span className="marquee-separator">✦</span>
+                    {MARQUEE_TEXTS.map((text, idx) => (
+                      <React.Fragment key={idx}>
+                        <h2 className="marquee-heading">{text}</h2>
+                        <span className="marquee-separator">✦</span>
+                      </React.Fragment>
+                    ))}
                   </React.Fragment>
                 ))}
               </div>
               <div className="marquee-content" aria-hidden="true">
-                {[...Array(4)].map((_, i) => (
+                {[...Array(3)].map((_, i) => (
                   <React.Fragment key={`marquee-2-${i}`}>
-                    <h2 className="marquee-heading">Favourite of Every Kitchen</h2>
-                    <span className="marquee-separator">✦</span>
-                    <h2 className="marquee-heading">Freshness of Tomatoes</h2>
-                    <span className="marquee-separator">✦</span>
-                    <h2 className="marquee-heading">Flavour Meets Fun</h2>
-                    <span className="marquee-separator">✦</span>
+                    {MARQUEE_TEXTS.map((text, idx) => (
+                      <React.Fragment key={idx}>
+                        <h2 className="marquee-heading">{text}</h2>
+                        <span className="marquee-separator">✦</span>
+                      </React.Fragment>
+                    ))}
                   </React.Fragment>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right Column */}
-          <div className="hero-right-col">
-            <p className="flavor-text">AVAILABLE SIZES</p>
-            <div className="size-selectors">
-              <div className="size-circle">
-                <span>1</span>
-                <small>kg</small>
-              </div>
-              <div className="size-circle">
-                <span>500</span>
-                <small>g</small>
-              </div>
-              <div className="size-circle">
-                <span>200</span>
-                <small>g</small>
-              </div>
-            </div>
-          </div>
         </main>
 
         {/* Footer */}
         <footer className="topisto-footer">
           <div className="footer-left">
-            <a href="#" className="social-icon" aria-label="Instagram">
+            <a href="https://www.instagram.com/topistotomatomix/" className="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </a>
-            <a href="#" className="social-icon" aria-label="Facebook">
+            <a href="https://www.facebook.com/Topistonigeria" className="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-            </a>
-            <a href="#" className="social-icon" aria-label="Twitter">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
             </a>
           </div>
 
           <div className="footer-center">
-            <div className="line"></div>
-            <span className="choose-size-text">Flavours You Love, Sizes You Need</span>
-            <div className="line"></div>
+            {/* Fixed Flavour Badge */}
+            <div className="fixed-flavour-badge">
+              <div className="flavour-badge-track" style={{ transform: `translateY(-${activeFlavourIndex * 25}%)` }}>
+                <div className="flavour-badge-item">Classic Tomato Mix</div>
+                <div className="flavour-badge-item">Goat Meat Flavour</div>
+                <div className="flavour-badge-item">Chicken Flavour</div>
+                <div className="flavour-badge-item">Fish Flavour</div>
+              </div>
+            </div>
           </div>
 
           <div className="footer-right">
-            {/* Shop Now button removed */}
+            <div className="sizes-footer-wrapper">
+              <span className="sizes-title">Available Sizes</span>
+              <div className="sizes-circles-list">
+                <div className="size-circle">
+                  <span>400</span>
+                  <small>g</small>
+                </div>
+                <div className="size-circle">
+                  <span>210</span>
+                  <small>g</small>
+                </div>
+                <div className="size-circle">
+                  <span>70</span>
+                  <small>g</small>
+                </div>
+              </div>
+            </div>
           </div>
         </footer>
       </div>
+
+      {/* Modal Popup for About Us */}
+      <AnimatePresence>
+        {isAboutOpen && (
+          <motion.div
+            className="about-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsAboutOpen(false)}
+          >
+            <motion.div
+              className="about-modal-content"
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="about-modal-close" onClick={() => setIsAboutOpen(false)} aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+              
+              <div className="about-modal-scrollable">
+                <h2 className="about-modal-title">About Us</h2>
+                <div className="about-modal-body">
+                  <p className="highlight-text">"Bringing richer flavour to every kitchen."</p>
+                  
+                  <p>Topisto is a fast-growing food brand by Agrim International Nigeria, created to provide rich, flavourful, and convenient cooking solutions for modern African kitchens.</p>
+                  
+                  <p>With a strong understanding of Nigerian cooking preferences, Topisto products are carefully developed to enhance taste, improve meal consistency, and make food preparation easier for households, restaurants, caterers, and food service operators.</p>
+                  
+                  <p>Our product range includes flavourful tomato mixes and cooking blends designed for everyday meals, festive dishes, and traditional recipes. Whether used in jollof rice, stews, soups, sauces, or local delicacies, Topisto helps bring depth, colour, and reliable taste to every dish.</p>
+                  
+                  <p>At Topisto, we believe good food brings families and communities together. That is why our products are made to be affordable, easy to use, and suitable for both home and commercial cooking.</p>
+                  
+                  <p>We are committed to supporting kitchens with dependable products that deliver rich flavour, consistent quality, and everyday convenience.</p>
+
+                  <div className="purpose-promise-container">
+                    <div className="modal-info-card">
+                      <h3>Our Purpose</h3>
+                      <ul>
+                        <li><strong>Simpler Cooking:</strong> Making food preparation effortless and efficient.</li>
+                        <li><strong>Tastier Meals:</strong> Elevating flavor profiles with rich, authentic tastes.</li>
+                        <li><strong>More Enjoyable:</strong> Turning daily kitchen tasks into joyful culinary experiences.</li>
+                        <li><strong>African Heritage:</strong> Tailoring specific food solutions for traditional African meals.</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="modal-info-card">
+                      <h3>Our Promise</h3>
+                      <ul>
+                        <li><strong>Convenient Solutions:</strong> Providing easy-to-use products that save busy kitchens time.</li>
+                        <li><strong>Affordable Premium:</strong> High-quality ingredients priced reasonably for every family.</li>
+                        <li><strong>Taste-Enhancing:</strong> Ensuring rich color, depth, and flavor in every single dish.</li>
+                        <li><strong>Cooking Confidence:</strong> Empowering you to prepare everyday meals with absolute pride.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal Popup for Enquire Now */}
+      <AnimatePresence>
+        {isEnquireOpen && (
+          <motion.div
+            className="about-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsEnquireOpen(false)}
+          >
+            <motion.div
+              className="enquire-modal-content"
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="about-modal-close" onClick={() => setIsEnquireOpen(false)} aria-label="Close modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+              
+              <div className="about-modal-scrollable">
+                <h2 className="about-modal-title">Enquire Now</h2>
+                <p className="enquire-subtitle">Interested in Topisto for your home or business? Send us a message and our team will get back to you shortly.</p>
+                
+                <form className="enquire-form" onSubmit={(e) => { e.preventDefault(); alert('Thank you for your enquiry! Our team will get back to you soon.'); setIsEnquireOpen(false); }}>
+                  <div className="form-group">
+                    <label htmlFor="fullName">Full Name</label>
+                    <input type="text" id="fullName" required placeholder="Enter your full name" />
+                  </div>
+                  
+                  <div className="form-group-row">
+                    <div className="form-group">
+                      <label htmlFor="email">Email Address</label>
+                      <input type="email" id="email" required placeholder="name@example.com" />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="phone">Phone Number</label>
+                      <input type="tel" id="phone" required placeholder="e.g. +234..." />
+                    </div>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="interest">Interested In</label>
+                    <select id="interest" required defaultValue="tomato-paste">
+                      <option value="tomato-paste">Topisto Tomato Paste / Mix</option>
+                      <option value="distribution">Distribution / Partnership</option>
+                      <option value="bulk-order">Bulk / Commercial Order</option>
+                      <option value="other">Other Inquiry</option>
+                    </select>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="message">Your Message</label>
+                    <textarea id="message" rows="4" required placeholder="Describe your requirement in detail..."></textarea>
+                  </div>
+                  
+                  <button type="submit" className="btn-submit-enquiry">
+                    Submit Enquiry
+                  </button>
+                </form>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
