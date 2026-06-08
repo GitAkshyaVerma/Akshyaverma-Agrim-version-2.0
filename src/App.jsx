@@ -13,6 +13,7 @@ import Footer from './components/layout/Footer';
 // Pages
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import MaintenancePage from './pages/MaintenancePage';
 import TopistoPage from './pages/mohan_topisto/TopistoPage';
@@ -47,6 +48,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/maintenance" element={<MaintenancePage />} />
         <Route path="/topisto" element={<TopistoPage />} />

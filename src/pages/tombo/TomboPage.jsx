@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Award, Compass, Zap, ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Award, Compass, Zap, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Check } from 'lucide-react';
 import './TomboPage.css';
 
 const SLIDES = [
@@ -456,11 +456,11 @@ const TomboPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="gold-subtitle">Our Heritage</span>
-                <h2 className="section-title">The Art of Pure Distillation</h2>
+                <span className="gold-subtitle">Our Spirit</span>
+                <h2 className="section-title">Crafted for Bold Taste and Real Moments</h2>
                 <div className="header-line"></div>
                 <p className="section-desc">
-                  Every bottle of Tombo is a testament to master craft, combining time-honored distillation traditions with select global ingredients to deliver an unparalleled tasting experience.
+                  Tombo is Agrim International Nigeria’s beverage brand created for modern consumers who enjoy bold flavour, quality, and memorable drinking experiences. From bitters and spirit-based beverages to ready-to-drink cans and cream liqueurs, Tombo blends innovation with local taste preferences to make every occasion more enjoyable.
                 </p>
               </motion.div>
 
@@ -475,8 +475,28 @@ const TomboPage = () => {
                   <div className="craft-icon-wrapper">
                     <Compass className="craft-icon" />
                   </div>
-                  <h3>Select Sourcing</h3>
-                  <p>We source only the finest botanicals, rich dark cocoa, and premium grapes from local estates and global growers.</p>
+                  <h3>Bold Flavour Profile</h3>
+                  <p className="craft-card-subdesc">
+                    Crafted with distinctive taste combinations that suit celebrations, nightlife, relaxation, and social gatherings.
+                  </p>
+                  <ul className="craft-card-list">
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Rich and memorable taste</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Modern beverage experience</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Made for social occasions</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Inspired by local preferences</span>
+                    </li>
+                  </ul>
                 </motion.div>
 
                 <motion.div
@@ -487,10 +507,30 @@ const TomboPage = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <div className="craft-icon-wrapper">
-                    <Zap className="craft-icon" />
+                    <Award className="craft-icon" />
                   </div>
-                  <h3>Copper Pot Distilled</h3>
-                  <p>Our small-batch double distillation process preserves the delicate aromatic oils and ensures absolute spirit purity.</p>
+                  <h3>Quality You Can Trust</h3>
+                  <p className="craft-card-subdesc">
+                    Tombo products are developed with a focus on consistency, reliability, and enjoyable flavour across every pack and bottle.
+                  </p>
+                  <ul className="craft-card-list">
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Consistent product quality</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Carefully developed blends</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Reliable taste experience</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Consumer-focused standards</span>
+                    </li>
+                  </ul>
                 </motion.div>
 
                 <motion.div
@@ -501,10 +541,30 @@ const TomboPage = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <div className="craft-icon-wrapper">
-                    <Award className="craft-icon" />
+                    <Zap className="craft-icon" />
                   </div>
-                  <h3>Oak Cask Maturation</h3>
-                  <p>Patiently matured in toasted oak casks, allowing the spirits to develop their signature smooth texture and deep character.</p>
+                  <h3>Made for Every Moment</h3>
+                  <p className="craft-card-subdesc">
+                    Designed for today’s consumers, Tombo brings excitement and confidence to parties, casual hangouts, celebrations, and everyday relaxation.
+                  </p>
+                  <ul className="craft-card-list">
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Perfect for celebrations</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Great for nightlife</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Suitable for relaxation</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Built for modern lifestyles</span>
+                    </li>
+                  </ul>
                 </motion.div>
               </div>
             </div>
