@@ -1,27 +1,86 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// ─── Desktop slides (16:9 landscape) ──────────────────────────────────────
-const desktopSlides = [
-  {
-    src: `${import.meta.env.BASE_URL}assets/mainHeroSection/TOBO-16-9.jpeg`,
-    alt: 'TOBO Product Range',
-  },
-  {
-    src: `${import.meta.env.BASE_URL}assets/mainHeroSection/TOMBO-ALL-16x9.jpeg`,
-    alt: 'TOMBO Product Range',
-  },
+const desktopHeroImages = [
+  '/assets/mainHeroSection/web/image1.jpeg',
+  '/assets/mainHeroSection/web/image2.jpeg',
+  '/assets/mainHeroSection/web/image2.png',
+  '/assets/mainHeroSection/web/image3.png',
+  '/assets/mainHeroSection/web/image4.png',
+  '/assets/mainHeroSection/web/image5.png',
+  '/assets/mainHeroSection/web/image6.jpeg',
+  '/assets/mainHeroSection/web/image7.png'
 ];
 
-// ─── Mobile slides (9:16 portrait) — add more images here later ───────────
-const mobileSlides = [
+const getDesktopHeroImage = (index) => desktopHeroImages[Math.min(index, desktopHeroImages.length - 1)];
+
+const slidesData = [
   {
-    src: `${import.meta.env.BASE_URL}assets/mainHeroSection/mobile/TOBO-9-16.jpeg`,
-    alt: 'TOBO Product Range',
+    desktopSrc: getDesktopHeroImage(0),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-tombo-1.png',
+    tagline: 'TOMBO BEVERAGES',
+    title: 'Bold Taste Experiences',
+    desc: 'Ready-to-drink options bringing quality and flavour to your social moments.',
+    link: '/tombo'
   },
-  // Add more mobile slides here when ready
+  {
+    desktopSrc: getDesktopHeroImage(1),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-all-2.png',
+    tagline: 'GLOBAL DISTRIBUTION',
+    title: 'Excellence in Distribution',
+    desc: 'Bridging global markets with premium products and logistics standards.',
+    link: '/products'
+  },
+  {
+    desktopSrc: getDesktopHeroImage(2),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-topisto-3.png',
+    tagline: 'TOPISTO TOMATO MIX',
+    title: 'Richer Cooking Blends',
+    desc: 'Rich tomato blends crafted for bold, flavourful African cooking.',
+    link: '/topisto'
+  },
+  {
+    desktopSrc: getDesktopHeroImage(3),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-popup-4.png',
+    tagline: 'TOBO CONFECTIONERY',
+    title: 'Fun & Sweet Moments',
+    desc: 'Colourful candies, lollipops, and bubble gums designed to bring smiles.',
+    link: '/maintenance'
+  },
+  {
+    desktopSrc: getDesktopHeroImage(4),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-tobo-candy-5.png',
+    tagline: 'TOBO CONFECTIONERY',
+    title: 'Sweetness in Every Bite',
+    desc: 'Fun, flavourful treats crafted to bring smiles to families across West Africa.',
+    link: '/maintenance'
+  },
+  {
+    desktopSrc: getDesktopHeroImage(5),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-womaneez-6.png',
+    tagline: 'WOMANEEZZ SANITARY PADS',
+    title: 'Cotton Soft Care',
+    desc: 'Ultra-thin, dry-feel technology for uncompromised comfort and protection.',
+    link: '/hygiene/pads'
+  },
+  {
+    desktopSrc: getDesktopHeroImage(6),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-condom-7.png',
+    tagline: 'INTIMATE PROTECTION',
+    title: 'Tango & Kuchi Kuchi',
+    desc: 'Advanced safety and heightened sensitivity condoms engineered for absolute confidence.',
+    link: '/hygiene/condoms'
+  },
+  {
+    desktopSrc: getDesktopHeroImage(7),
+    mobileSrc: '/assets/mainHeroSection/mobile/mobile-babeez-8.png',
+    tagline: 'BABYEEZZ DIAPERS',
+    title: 'Gentle Baby Care',
+    desc: 'Hypoallergenic diapering with high-capacity absorbency for active days and dry nights.',
+    link: '/hygiene/diapers'
+  }
 ];
 
-/** Returns true when viewport width is < 768 px */
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
@@ -37,109 +96,72 @@ const useIsMobile = () => {
 
 const Hero = () => {
   const isMobile = useIsMobile();
-  const slides = isMobile ? mobileSlides : desktopSlides;
-
   const [current, setCurrent] = useState(0);
-  const isAnimating = useRef(false);
   const timerRef = useRef(null);
 
-  // Reset to first slide on orientation switch
-  useEffect(() => {
-    setCurrent(0);
-  }, [isMobile]);
-
-  const goTo = useCallback(
-    (index) => {
-      if (isAnimating.current || index === current) return;
-      isAnimating.current = true;
-      setCurrent(index);
-      // unblock after transition duration (700ms)
-      setTimeout(() => { isAnimating.current = false; }, 700);
-    },
-    [current]
-  );
-
   const next = useCallback(() => {
-    goTo((current + 1) % slides.length);
-  }, [current, goTo, slides.length]);
+    setCurrent((c) => (c + 1) % slidesData.length);
+  }, []);
 
   const prev = useCallback(() => {
-    goTo((current - 1 + slides.length) % slides.length);
-  }, [current, goTo, slides.length]);
+    setCurrent((c) => (c - 1 + slidesData.length) % slidesData.length);
+  }, []);
 
-  // Auto-advance every 5 seconds
+  const goTo = (index) => {
+    setCurrent(index);
+  };
+
   useEffect(() => {
-    timerRef.current = setInterval(next, 5000);
+    timerRef.current = setInterval(next, 6000);
     return () => clearInterval(timerRef.current);
-  }, [next]);
+  }, [current, next]);
 
   return (
-    <section id="home" className="hero hero-carousel">
+    <section id="home" className="hero-section">
+      <div className="hero-slides-wrapper">
+        {slidesData.map((slide, i) => {
+          const bgImage = isMobile ? slide.mobileSrc : slide.desktopSrc;
+          const showSlideText = isMobile || i === 0;
 
-      {/*
-        ── Sliding strip ──
-        All slides sit side-by-side in one flex row.
-        We shift the whole track left with translateX.
-        Only ONE element animates → butter-smooth.
-      */}
-      <div
-        className="carousel-track"
-        style={{ transform: `translateX(-${current * 100}%)` }}
-      >
-        {slides.map((slide, i) => (
-          <div
-            key={`${isMobile ? 'm' : 'd'}-${i}`}
-            className="carousel-slide"
-            aria-hidden={i !== current}
-          >
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              className="carousel-img"
-              draggable="false"
-            />
+          return (
+            <div 
+              key={i} 
+              className={`hero-slide-item ${i === current ? 'active' : ''}`}
+              style={{ backgroundImage: `url(${bgImage})` }}
+            >
+              <div className="hero-slide-overlay" />
+              {showSlideText && (
+                <div className="hero-slide-content container">
+                  <span className="hero-slide-tagline">{slide.tagline}</span>
+                  <h1 className="hero-slide-title">{slide.title}</h1>
+                  <p className="hero-slide-desc">{slide.desc}</p>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Sleek, industry-standard slider navigation */}
+      <div className="hero-slide-nav-container container">
+        <div className="hero-slide-nav">
+          <button className="hero-nav-btn prev" onClick={prev} aria-label="Previous slide">
+            <ChevronLeft size={16} />
+          </button>
+          <div className="hero-nav-dots">
+            {slidesData.map((_, idx) => (
+              <button
+                key={idx}
+                className={`hero-nav-dot ${idx === current ? 'active' : ''}`}
+                onClick={() => goTo(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
-        ))}
-      </div>
-
-      {/* Top gradient — navbar readability */}
-      <div className="carousel-overlay" />
-
-      {/* Arrows — only when multiple slides */}
-      {slides.length > 1 && (
-        <>
-          <button
-            className="carousel-arrow carousel-arrow--prev"
-            onClick={prev}
-            aria-label="Previous slide"
-          >
-            &#8249;
+          <button className="hero-nav-btn next" onClick={next} aria-label="Next slide">
+            <ChevronRight size={16} />
           </button>
-          <button
-            className="carousel-arrow carousel-arrow--next"
-            onClick={next}
-            aria-label="Next slide"
-          >
-            &#8250;
-          </button>
-        </>
-      )}
-
-      {/* Dot indicators */}
-      <div className="carousel-dots">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            className={`carousel-dot ${i === current ? 'active' : ''}`}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
-      {/* Scroll indicator — visible in the gap below the image on tall screens */}
-      <div className="hero-scroll-hint">
-        <span className="hero-scroll-label">Scroll to explore</span>
-        <div className="hero-scroll-chevron" />
+        </div>
       </div>
     </section>
   );

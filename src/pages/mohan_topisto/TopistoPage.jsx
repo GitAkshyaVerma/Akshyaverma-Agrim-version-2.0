@@ -13,8 +13,21 @@ const MARQUEE_TEXTS = [
 
 const TopistoPage = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isCommunityCareOpen, setIsCommunityCareOpen] = useState(false);
   const [isEnquireOpen, setIsEnquireOpen] = useState(false);
   const [activeFlavourIndex, setActiveFlavourIndex] = useState(0);
+
+  useEffect(() => {
+    const closeOpenModal = (event) => {
+      if (event.key !== 'Escape') return;
+      setIsAboutOpen(false);
+      setIsCommunityCareOpen(false);
+      setIsEnquireOpen(false);
+    };
+
+    window.addEventListener('keydown', closeOpenModal);
+    return () => window.removeEventListener('keydown', closeOpenModal);
+  }, []);
 
   // --- Scroll Parallax ---
   const { scrollYProgress } = useScroll();
@@ -184,6 +197,16 @@ const TopistoPage = () => {
             <a href="https://www.facebook.com/Topistonigeria" className="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </a>
+            <button
+              className="social-icon community-care-icon"
+              onClick={() => setIsCommunityCareOpen(true)}
+              aria-label="Open Topisto Community Care Program"
+              title="Community Care"
+            >
+              <svg className="community-heart-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </button>
           </div>
 
           <div className="footer-center">
@@ -278,6 +301,66 @@ const TopistoPage = () => {
                       </ul>
                     </div>
                   </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal Popup for Community Care */}
+      <AnimatePresence>
+        {isCommunityCareOpen && (
+          <motion.div
+            className="about-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsCommunityCareOpen(false)}
+          >
+            <motion.div
+              className="about-modal-content community-care-modal-content"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="community-care-title"
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="about-modal-close" onClick={() => setIsCommunityCareOpen(false)} aria-label="Close Community Care popup">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+
+              <div className="about-modal-scrollable">
+                <div className="community-care-heading">
+                  <span className="community-care-heart" aria-hidden="true">♥</span>
+                  <div>
+                    <span className="community-care-eyebrow">TOPISTO COMMUNITY CARE PROGRAM</span>
+                    <h2 id="community-care-title" className="about-modal-title">Nourishing Communities Together</h2>
+                  </div>
+                </div>
+
+                <div className="about-modal-body community-care-body">
+                  <p className="highlight-text">At Agrim International Nigeria, food represents care, dignity, and community.</p>
+                  <p>Through Topisto Community Care, we support food assistance efforts and outreach programs for vulnerable communities, orphanages, and underserved groups.</p>
+
+                  <div className="community-care-card">
+                    <h3>Orphanage Support Program</h3>
+                    <p>Topisto periodically supports orphanages and community welfare initiatives through:</p>
+                    <ul>
+                      <li>Food donations</li>
+                      <li>Cooking support</li>
+                      <li>Meal sponsorships</li>
+                      <li>Community feeding initiatives</li>
+                      <li>Family care outreach</li>
+                    </ul>
+                  </div>
+
+                  <p>We believe every child deserves warmth, care, nutrition, and hope.</p>
+                  <blockquote>“Sharing Meals. Sharing Hope.”</blockquote>
+                  <p className="community-care-note">Many Nigerian companies support orphanages through food and welfare donations as part of community responsibility programs, helping vulnerable children with meals and essential supplies.</p>
                 </div>
               </div>
             </motion.div>

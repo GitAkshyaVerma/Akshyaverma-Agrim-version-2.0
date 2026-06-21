@@ -50,21 +50,7 @@ const Navbar = () => {
     <>
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container">
-          {/* Logo */}
-          <Link to="/" className="nav-logo">
-            <img src={`${import.meta.env.BASE_URL}assets/newLogo.png`} alt="Agrim Internationals Logo" className="nav-logo-img" />
-            <span className="nav-brand-text">Agrim International Fze</span>
-          </Link>
-
-          {/* Desktop links */}
-          <ul className="nav-links">
-            <li><Link to="/#home">Home</Link></li>
-            <li><Link to="/#products">Products</Link></li>
-            <li><Link to="/#about">About</Link></li>
-          </ul>
-          <Link to="/contact" className="nav-cta nav-cta--desktop">Contact Us</Link>
-
-          {/* Burger button — mobile only */}
+          {/* Burger button — mobile only (left-aligned) */}
           <button
             className={`burger-btn ${menuOpen ? 'burger-btn--open' : ''}`}
             onClick={() => setMenuOpen((o) => !o)}
@@ -75,6 +61,23 @@ const Navbar = () => {
             <span className="burger-line" />
             <span className="burger-line" />
           </button>
+
+          {/* Logo / Title (centered on mobile, left on desktop) */}
+          <Link to="/" className="nav-logo">
+            <img src={`${import.meta.env.BASE_URL}assets/newLogo.png`} alt="Agrim Internationals Logo" className="nav-logo-img" />
+            <span className="nav-brand-text">Agrim International</span>
+          </Link>
+
+          {/* Desktop links */}
+          <ul className="nav-links">
+            <li><Link to="/#home">Home</Link></li>
+            <li><Link to="/products">Products</Link></li>
+            <li><Link to="/about">About</Link></li>
+          </ul>
+
+          <div className="nav-actions">
+            <Link to="/contact" className="nav-cta nav-cta--desktop">Contact Us</Link>
+          </div>
         </div>
       </nav>
 
@@ -102,11 +105,11 @@ const Navbar = () => {
             <Home size={18} strokeWidth={1.75} />
             Home
           </Link>
-          <Link to="/#products" className="drawer-link" onClick={closeMenu}>
+          <Link to="/products" className="drawer-link" onClick={closeMenu}>
             <Package size={18} strokeWidth={1.75} />
             Products
           </Link>
-          <Link to="/#about" className="drawer-link" onClick={closeMenu}>
+          <Link to="/about" className="drawer-link" onClick={closeMenu}>
             <Info size={18} strokeWidth={1.75} />
             About
           </Link>

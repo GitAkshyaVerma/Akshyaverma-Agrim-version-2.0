@@ -18,7 +18,7 @@ export const productsData = [
     shortDesc: 'Trusted care products designed for comfort, protection, hygiene',
     icon: <Pill size={48} className="category-icon" />,
     largeIcon: <Pill size={56} color="var(--color-primary)" />,
-    link: '/maintenance'
+    link: '/hygiene'
   },
   {
     id: 'candies',

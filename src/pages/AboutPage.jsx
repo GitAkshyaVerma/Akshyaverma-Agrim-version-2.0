@@ -22,14 +22,35 @@ const AboutPage = () => {
     <div className="about-page">
       {/* Hero Banner */}
       <section className="about-page-hero">
-        <div className="container">
-          <h1 className="about-page-title">About Agrim International Nigeria</h1>
-          <p className="about-page-subtitle">Building Trusted Brands for Everyday Life</p>
+        <div className="about-hero-orb about-hero-orb-one" />
+        <div className="about-hero-orb about-hero-orb-two" />
+        <div className="container about-hero-layout">
+          <div className="about-hero-copy">
+            <span className="about-hero-eyebrow">About Agrim International Nigeria</span>
+            <h1 className="about-page-title">Building Trusted Brands for Everyday Life</h1>
+            <p className="about-page-subtitle">Quality, accessibility, and local market understanding—brought together across a growing portfolio of everyday products.</p>
+          </div>
+          <div className="about-hero-focus" aria-label="Our business focus">
+            <span>Manufacturing</span>
+            <span>Distribution</span>
+            <span>Consumer Brands</span>
+            <span>Healthcare</span>
+          </div>
         </div>
       </section>
 
+      <nav className="about-section-nav" aria-label="About page sections">
+        <div className="container">
+          <a href="#overview">Overview</a>
+          <a href="#vision">Vision & Mission</a>
+          <a href="#capabilities">What We Do</a>
+          <a href="#strengths">Our Strengths</a>
+          <a href="#reach">Market Reach</a>
+        </div>
+      </nav>
+
       {/* Intro Overview */}
-      <section className="about-page-intro">
+      <section id="overview" className="about-page-intro">
         <div className="container">
           <div className="about-intro-grid">
             <div className="about-intro-text">
@@ -71,7 +92,7 @@ const AboutPage = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="about-vision-mission">
+      <section id="vision" className="about-vision-mission">
         <div className="container">
           <div className="vision-mission-grid">
             <div className="vision-card">
@@ -93,7 +114,7 @@ const AboutPage = () => {
       </section>
 
       {/* What We Do */}
-      <section className="about-what-we-do">
+      <section id="capabilities" className="about-what-we-do">
         <div className="container">
           <h2 className="section-title">What We Do</h2>
           <p className="section-subtitle">Agrim International Nigeria serves multiple consumer sectors through a growing and diverse product portfolio.</p>
@@ -135,7 +156,7 @@ const AboutPage = () => {
       </section>
 
       {/* Our Core Strengths */}
-      <section className="about-strengths">
+      <section id="strengths" className="about-strengths">
         <div className="container">
           <h2 className="section-title">Our Core Strengths</h2>
           <div className="strengths-grid">
@@ -186,7 +207,7 @@ const AboutPage = () => {
       </section>
 
       {/* Market Reach & Philosophy */}
-      <section className="about-reach-philosophy">
+      <section id="reach" className="about-reach-philosophy">
         <div className="container">
           <div className="reach-philosophy-grid">
             <div className="reach-box">
