@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const desktopHeroImages = [
-  '/assets/mainHeroSection/web/image1.jpeg',
-  '/assets/mainHeroSection/web/image2.jpeg',
+  '/assets/mainHeroSection/web/image0.jpeg',
+  '/assets/mainHeroSection/web/image1.png',
   '/assets/mainHeroSection/web/image2.png',
   '/assets/mainHeroSection/web/image3.png',
   '/assets/mainHeroSection/web/image4.png',
@@ -45,7 +45,7 @@ const slidesData = [
     tagline: 'TOBO CONFECTIONERY',
     title: 'Fun & Sweet Moments',
     desc: 'Colourful candies, lollipops, and bubble gums designed to bring smiles.',
-    link: '/maintenance'
+    link: '/tobo'
   },
   {
     desktopSrc: getDesktopHeroImage(4),
@@ -53,7 +53,7 @@ const slidesData = [
     tagline: 'TOBO CONFECTIONERY',
     title: 'Sweetness in Every Bite',
     desc: 'Fun, flavourful treats crafted to bring smiles to families across West Africa.',
-    link: '/maintenance'
+    link: '/tobo'
   },
   {
     desktopSrc: getDesktopHeroImage(5),
@@ -98,6 +98,7 @@ const Hero = () => {
   const isMobile = useIsMobile();
   const [current, setCurrent] = useState(0);
   const timerRef = useRef(null);
+  const touchStartRef = useRef(null);
 
   const next = useCallback(() => {
     setCurrent((c) => (c + 1) % slidesData.length);
@@ -111,6 +112,24 @@ const Hero = () => {
     setCurrent(index);
   };
 
+  const handleTouchStart = (event) => {
+    const touch = event.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (event) => {
+    if (!touchStartRef.current) return;
+
+    const touch = event.changedTouches[0];
+    const distanceX = touchStartRef.current.x - touch.clientX;
+    const distanceY = touchStartRef.current.y - touch.clientY;
+    touchStartRef.current = null;
+
+    if (Math.abs(distanceX) < 45 || Math.abs(distanceX) <= Math.abs(distanceY)) return;
+    if (distanceX > 0) next();
+    else prev();
+  };
+
   useEffect(() => {
     timerRef.current = setInterval(next, 6000);
     return () => clearInterval(timerRef.current);
@@ -118,7 +137,11 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero-section">
-      <div className="hero-slides-wrapper">
+      <div
+        className="hero-slides-wrapper"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {slidesData.map((slide, i) => {
           const bgImage = isMobile ? slide.mobileSrc : slide.desktopSrc;
           const showSlideText = isMobile || i === 0;
@@ -149,14 +172,29 @@ const Hero = () => {
             <ChevronLeft size={16} />
           </button>
           <div className="hero-nav-dots">
-            {slidesData.map((_, idx) => (
-              <button
-                key={idx}
-                className={`hero-nav-dot ${idx === current ? 'active' : ''}`}
-                onClick={() => goTo(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
+            {isMobile
+              ? [-2, -1, 0, 1, 2].map((offset) => {
+                  const idx = (current + offset + slidesData.length) % slidesData.length;
+                  const sizeClass = Math.abs(offset) === 2 ? 'is-small' : 'is-near';
+
+                  return (
+                    <button
+                      key={`${current}-${offset}`}
+                      className={`hero-nav-dot ${offset === 0 ? 'active' : sizeClass}`}
+                      onClick={() => goTo(idx)}
+                      data-slide-count={`${current + 1}/${slidesData.length}`}
+                      aria-label={offset === 0 ? `Current slide ${current + 1}` : `Go to slide ${idx + 1}`}
+                    />
+                  );
+                })
+              : slidesData.map((_, idx) => (
+                  <button
+                    key={idx}
+                    className={`hero-nav-dot ${idx === current ? 'active' : ''}`}
+                    onClick={() => goTo(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
           </div>
           <button className="hero-nav-btn next" onClick={next} aria-label="Next slide">
             <ChevronRight size={16} />

@@ -14,9 +14,19 @@ const ContactForm = () => {
         <div className="contact-page-header">
           <span className="contact-eyebrow">Contact</span>
           <h1 className="contact-page-title">Start a Conversation With Agrim</h1>
-          <p className="contact-page-intro">
-            Tell us what you are building, sourcing, or distributing. Our team will help route your enquiry to the right brand or business channel.
-          </p>
+          <div className="contact-page-intro-wrap">
+            <p className="contact-page-intro">
+              Tell us what you are building, sourcing, or distributing. Our team will help route your enquiry to the right brand or business channel.
+            </p>
+            <div className="contact-highlight-list contact-highlight-list--hero">
+              {contactHighlights.map((item) => (
+                <div className="contact-highlight-item" key={item}>
+                  <Building2 size={16} />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="contact-b2b-grid">
@@ -26,15 +36,6 @@ const ContactForm = () => {
               <span className="contact-panel-kicker">Business support</span>
               <h2>Let’s Build Reliable Market Access</h2>
               <p>Partner with Agrim International for brand distribution, wholesale supply, and category-focused FMCG opportunities across growing markets.</p>
-            </div>
-
-            <div className="contact-highlight-list">
-              {contactHighlights.map((item) => (
-                <div className="contact-highlight-item" key={item}>
-                  <Building2 size={16} />
-                  <span>{item}</span>
-                </div>
-              ))}
             </div>
 
             <div className="contact-info-list">

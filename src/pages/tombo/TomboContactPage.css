@@ -1,0 +1,309 @@
+.tombo-contact-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #f8f3ea;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(193, 154, 107, .25), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(245, 227, 195, .12), transparent 24%),
+    linear-gradient(135deg, #030303 0%, #0d0a07 45%, #160f08 100%);
+  font-family: 'Outfit', sans-serif;
+}
+
+.tombo-contact-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: min(1240px, calc(100% - 2rem));
+  min-height: 96px;
+  margin: 0 auto;
+}
+
+.tombo-contact-back,
+.tombo-contact-products {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  width: fit-content;
+  border: 1px solid rgba(193, 154, 107, .32);
+  border-radius: 999px;
+  padding: .75rem 1rem;
+  color: #f5e3c3;
+  background: rgba(255,255,255,.04);
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 700;
+  backdrop-filter: blur(14px);
+}
+
+.tombo-contact-back { justify-self: start; }
+.tombo-contact-products { justify-self: end; }
+
+.tombo-contact-logo {
+  display: grid;
+  width: clamp(120px, 10vw, 170px);
+  height: 76px;
+  place-items: center;
+}
+
+.tombo-contact-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tombo-contact-main {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 3rem) 0 5rem;
+}
+
+.tombo-contact-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .58fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.tombo-contact-eyebrow,
+.tombo-contact-panel > span,
+.tombo-contact-form-intro span {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin: 0 0 1rem;
+  color: #c19a6b;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.tombo-contact-copy h1 {
+  max-width: 760px;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6.4vw, 7rem);
+  line-height: .98;
+  letter-spacing: -.035em;
+  background: linear-gradient(135deg, #fff8ec 0%, #f5e3c3 45%, #c19a6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tombo-contact-copy p {
+  max-width: 650px;
+  margin: 1.5rem 0 0;
+  color: rgba(248, 243, 234, .72);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.tombo-contact-panel {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(193, 154, 107, .32);
+  border-radius: 34px;
+  background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+  box-shadow: 0 32px 90px rgba(0,0,0,.36), inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter: blur(18px);
+}
+
+.tombo-contact-panel h2,
+.tombo-contact-form-intro h2 {
+  margin: 0 0 1.2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  line-height: 1.05;
+  color: #fff8ec;
+}
+
+.tombo-contact-info {
+  display: grid;
+  gap: .9rem;
+}
+
+.tombo-contact-info a,
+.tombo-contact-info p {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 0;
+  border: 1px solid rgba(193, 154, 107, .22);
+  border-radius: 18px;
+  padding: 1rem;
+  color: #f5e3c3;
+  background: rgba(0,0,0,.24);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tombo-contact-info svg {
+  color: #c19a6b;
+  flex: 0 0 auto;
+}
+
+.tombo-contact-support {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.tombo-contact-support article {
+  padding: 1.5rem;
+  border: 1px solid rgba(193, 154, 107, .22);
+  border-radius: 28px;
+  background: rgba(255,255,255,.045);
+  box-shadow: 0 20px 60px rgba(0,0,0,.22);
+}
+
+.tombo-contact-support div {
+  display: grid;
+  width: 50px;
+  aspect-ratio: 1;
+  margin-bottom: 1.1rem;
+  place-items: center;
+  border-radius: 16px;
+  color: #160f08;
+  background: linear-gradient(135deg, #f5e3c3, #c19a6b);
+}
+
+.tombo-contact-support h3 {
+  margin: 0 0 .55rem;
+  color: #fff8ec;
+  font-size: 1.25rem;
+}
+
+.tombo-contact-support p {
+  margin: 0;
+  color: rgba(248, 243, 234, .66);
+  line-height: 1.6;
+}
+
+.tombo-contact-form-section {
+  display: grid;
+  grid-template-columns: .62fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.4rem, 4vw, 3rem);
+  border: 1px solid rgba(193, 154, 107, .35);
+  border-radius: 34px;
+  background: linear-gradient(145deg, rgba(193,154,107,.18), rgba(255,255,255,.055));
+  box-shadow: 0 30px 100px rgba(0,0,0,.34);
+}
+
+.tombo-contact-form-intro p {
+  margin: 0;
+  color: rgba(248, 243, 234, .7);
+  line-height: 1.7;
+}
+
+.tombo-contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.tombo-contact-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.tombo-contact-form label {
+  display: grid;
+  gap: .45rem;
+  color: #f5e3c3;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.tombo-contact-form input,
+.tombo-contact-form select,
+.tombo-contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(193, 154, 107, .32);
+  border-radius: 16px;
+  padding: 1rem;
+  color: #fff8ec;
+  background: rgba(0,0,0,.38);
+  font: 600 1rem/1.4 'Outfit', sans-serif;
+  outline: none;
+}
+
+.tombo-contact-form input::placeholder,
+.tombo-contact-form textarea::placeholder {
+  color: rgba(245, 227, 195, .42);
+}
+
+.tombo-contact-form input:focus,
+.tombo-contact-form select:focus,
+.tombo-contact-form textarea:focus {
+  border-color: #c19a6b;
+  box-shadow: 0 0 0 4px rgba(193, 154, 107, .14);
+}
+
+.tombo-contact-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: fit-content;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  padding: 1rem 1.35rem;
+  color: #160f08;
+  background: linear-gradient(135deg, #f5e3c3, #c19a6b);
+  font: 900 .9rem/1 'Outfit', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 14px 28px rgba(193, 154, 107, .22);
+}
+
+@media (max-width: 800px) {
+  .tombo-contact-header {
+    min-height: 70px;
+  }
+
+  .tombo-contact-back span,
+  .tombo-contact-products {
+    display: none;
+  }
+
+  .tombo-contact-back {
+    padding: .68rem;
+  }
+
+  .tombo-contact-logo {
+    width: 112px;
+    height: 58px;
+  }
+
+  .tombo-contact-main {
+    padding-bottom: 3rem;
+  }
+
+  .tombo-contact-hero,
+  .tombo-contact-form-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tombo-contact-copy h1 {
+    font-size: clamp(2.65rem, 13vw, 4.6rem);
+  }
+
+  .tombo-contact-support,
+  .tombo-contact-row {
+    grid-template-columns: 1fr;
+  }
+
+  .tombo-contact-support {
+    margin: 2rem 0;
+  }
+
+  .tombo-contact-form button {
+    width: 100%;
+  }
+}

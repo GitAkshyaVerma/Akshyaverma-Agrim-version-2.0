@@ -229,6 +229,11 @@ const TomboPage = () => {
             exit={{ y: "-100vh" }}
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
           >
+            <Link to="/products" className="tombo-curtain-back">
+              <ArrowLeft size={18} />
+              <span>Back to Products</span>
+            </Link>
+
             <motion.div
               className="tombo-curtain-glass"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -397,7 +402,7 @@ const TomboPage = () => {
                   </div>
 
                   <div className="tombo-hero-actions" onClick={(e) => isMobile && e.stopPropagation()}>
-                    <Link to="/contact" className="tombo-primary-cta">
+                    <Link to="/tombo/contact" className="tombo-primary-cta">
                       Enquire Now <ArrowRight size={18} />
                     </Link>
                   </div>
@@ -716,7 +721,7 @@ const TomboPage = () => {
                 <h2>Ready to elevate your spirits collection?</h2>
                 <p>Contact our global distribution team to enquire about partnership opportunities, bulk orders, or boutique offerings.</p>
                 <div className="cta-actions">
-                  <Link to="/contact" className="cta-gold-btn">
+                  <Link to="/tombo/contact" className="cta-gold-btn">
                     Get in Touch
                   </Link>
                   <button 

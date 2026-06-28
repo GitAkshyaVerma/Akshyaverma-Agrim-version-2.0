@@ -27,7 +27,7 @@ export const productsData = [
     shortDesc: 'Fun, flavourful treats crafted to bring smiles in every bite.',
     icon: <Candy size={48} className="category-icon" />,
     largeIcon: <Candy size={56} color="var(--color-primary)" />,
-    link: '/maintenance'
+    link: '/tobo'
   },
   {
     id: 'sauces',

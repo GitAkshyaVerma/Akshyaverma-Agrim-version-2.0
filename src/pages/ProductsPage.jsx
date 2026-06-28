@@ -35,7 +35,7 @@ const productMeta = {
 
 const portfolioStats = [
   { icon: <Boxes size={18} />, label: 'Diverse FMCG categories' },
-  { icon: <Globe2 size={18} />, label: 'West African market focus' },
+  { icon: <Globe2 size={18} />, label: 'African market focus' },
   { icon: <ShieldCheck size={18} />, label: 'Quality-led brand standards' }
 ];
 

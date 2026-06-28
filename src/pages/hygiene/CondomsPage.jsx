@@ -9,6 +9,8 @@ const BRANDS_DATA = {
     title: 'Tango',
     tagline: '“Protection you can trust.”',
     desc: "Tango is a premium protection brand focused on promoting safety, confidence, and responsible relationships.\n\nManufactured to high quality standards, Tango products are designed to provide reliability, comfort, and confidence.",
+    logo: '/assets/hygiene/image-condoms-logo.png',
+    logoAlt: 'Tango Condoms',
     image: '/assets/hygiene/tango-condom.png',
     variantsTitle: 'Product Range',
     variants: [
@@ -24,9 +26,11 @@ const BRANDS_DATA = {
     accentColor: '#dc2626'
   },
   kuchi: {
-    title: 'KUCHI KUCHI — Affordable Protection',
+    title: 'KUCHI KUCHI',
     tagline: '“Protection you can trust.”',
     desc: "Kuchi Kuchi is an accessible and affordable condom brand designed for mass-market consumers without compromising on quality and reliability.\n\nThe brand is positioned to offer trusted protection at affordable price points across pharmacies, supermarkets, and open markets.",
+    logo: '/assets/hygiene/image-kkcondoms-logo.png',
+    logoAlt: 'Kuchi Kuchi Condoms',
     image: '/assets/hygiene/kuchi-kuchi-condom.png',
     variantsTitle: 'Product Benefits',
     variants: [
@@ -60,6 +64,11 @@ const CondomsPage = () => {
           <ArrowLeft size={18} />
           <span>Back to Products</span>
         </Link>
+        <img
+          src={data.logo}
+          alt={data.logoAlt}
+          className="condoms-nav-logo"
+        />
         <Link to="/hygiene" className="back-btn secondary">
           <span>Hygiene Division</span>
         </Link>
@@ -99,7 +108,7 @@ const CondomsPage = () => {
                 <p className="hero-desc">{data.desc}</p>
 
                 <div className="cta-group">
-                  <Link to="/contact" className="btn-primary">
+                  <Link to="/hygiene/contact" className="btn-primary">
                     Enquire Now
                   </Link>
                   <a href="#details" className="btn-secondary">
@@ -391,7 +400,7 @@ const CondomsPage = () => {
         <div className="cta-card">
           <h2>Partner With Agrim Distribution</h2>
           <p>Become a distributor, retail partner, or pharmacy vendor for Tango & Kuchi Kuchi Condoms in West Africa. We support our partners with scalable supply chains and marketing assets.</p>
-          <Link to="/contact" className="cta-btn">
+          <Link to="/hygiene/contact" className="cta-btn">
             Become a Partner
           </Link>
         </div>

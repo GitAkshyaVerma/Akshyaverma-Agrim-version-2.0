@@ -20,10 +20,14 @@ import ContactPage from './pages/ContactPage';
 import MaintenancePage from './pages/MaintenancePage';
 import TopistoPage from './pages/mohan_topisto/TopistoPage';
 import TomboPage from './pages/tombo/TomboPage';
+import TomboContactPage from './pages/tombo/TomboContactPage';
 import HygieneHubPage from './pages/hygiene/HygieneHubPage';
 import CondomsPage from './pages/hygiene/CondomsPage';
 import PadsPage from './pages/hygiene/PadsPage';
 import DiapersPage from './pages/hygiene/DiapersPage';
+import ToboPage from './pages/tobo/ToboPage';
+import ToboContactPage from './pages/tobo/ToboContactPage';
+import HygieneContactPage from './pages/hygiene/HygieneContactPage';
 
 // Helper component to run hook inside Router
 const ScrollManager = () => {
@@ -34,9 +38,10 @@ const ScrollManager = () => {
 const AppContent = () => {
   const location = useLocation();
   const isTopisto = location.pathname === '/topisto';
-  const isTombo = location.pathname === '/tombo';
+  const isTombo = location.pathname.startsWith('/tombo');
   const isHygiene = location.pathname.startsWith('/hygiene');
-  const hideHeaderFooter = isTopisto || isTombo || isHygiene;
+  const isTobo = location.pathname.startsWith('/tobo');
+  const hideHeaderFooter = isTopisto || isTombo || isHygiene || isTobo;
 
   useEffect(() => {
     if (hideHeaderFooter) {
@@ -62,7 +67,11 @@ const AppContent = () => {
         <Route path="/maintenance" element={<MaintenancePage />} />
         <Route path="/topisto" element={<TopistoPage />} />
         <Route path="/tombo" element={<TomboPage />} />
+        <Route path="/tombo/contact" element={<TomboContactPage />} />
+        <Route path="/tobo" element={<ToboPage />} />
+        <Route path="/tobo/contact" element={<ToboContactPage />} />
         <Route path="/hygiene" element={<HygieneHubPage />} />
+        <Route path="/hygiene/contact" element={<HygieneContactPage />} />
         <Route path="/hygiene/condoms" element={<CondomsPage />} />
         <Route path="/hygiene/pads" element={<PadsPage />} />
         <Route path="/hygiene/diapers" element={<DiapersPage />} />

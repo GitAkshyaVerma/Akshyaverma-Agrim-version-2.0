@@ -74,6 +74,11 @@ const PadsPage = () => {
           <ArrowLeft size={18} />
           <span>Back to Products</span>
         </Link>
+        <img
+          src="/assets/hygiene/image-pads-logo.png"
+          alt="4D Womaneezz"
+          className="pads-nav-logo"
+        />
         <Link to="/hygiene" className="back-btn secondary">
           <span>Hygiene Division</span>
         </Link>
@@ -113,7 +118,7 @@ const PadsPage = () => {
             </div>
 
             <div className="cta-group">
-              <Link to="/contact" className="btn-primary">
+              <Link to="/hygiene/contact" className="btn-primary">
                 Order Samples / Enquire
               </Link>
               <a href="#benefits" className="btn-secondary">
@@ -359,7 +364,7 @@ const PadsPage = () => {
         <div className="cta-card">
           <h2>Partner With Womaneezz</h2>
           <p>We supply supermarkets, pharmacies, retail stores, and wholesale distribution networks with bulk quantities and trade support. Join hands with us to bring trusted feminine care to every home.</p>
-          <Link to="/contact" className="cta-btn">
+          <Link to="/hygiene/contact" className="cta-btn">
             Inquire Bulk Rates
           </Link>
         </div>

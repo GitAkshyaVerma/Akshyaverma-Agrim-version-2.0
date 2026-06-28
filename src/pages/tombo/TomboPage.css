@@ -24,6 +24,32 @@
   text-align: center;
 }
 
+.tombo-curtain-back {
+  position: absolute;
+  top: 30px;
+  left: 5%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: .75rem 1rem;
+  border: 1px solid rgba(193, 154, 107, 0.32);
+  border-radius: 999px;
+  color: #f5e3c3;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: .9rem;
+  font-weight: 700;
+  text-decoration: none;
+  backdrop-filter: blur(14px);
+  transition: all .3s ease;
+}
+
+.tombo-curtain-back:hover {
+  color: #ffffff;
+  border-color: rgba(193, 154, 107, 0.65);
+  transform: translateX(-3px);
+}
+
 .tombo-curtain-glass {
   background: rgba(15, 15, 15, 0.45);
   backdrop-filter: blur(25px);
@@ -1124,6 +1150,16 @@
     height: 100vh;
     height: 100dvh;
     padding: 1rem;
+  }
+
+  .tombo-curtain-back {
+    top: 1rem;
+    left: 1rem;
+    padding: .68rem;
+  }
+
+  .tombo-curtain-back span {
+    display: none;
   }
 
   .tombo-curtain-glass {

@@ -1,0 +1,327 @@
+.tobo-contact-page {
+  --berry: #ed1b69;
+  --berry-dark: #bd004e;
+  --lemon: #ffe43b;
+  --ink: #231544;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: white;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(255, 228, 59, .45) 0 8px, transparent 9px),
+    radial-gradient(circle at 72% 16%, rgba(255, 255, 255, .28) 0 4px, transparent 5px),
+    radial-gradient(circle at 48% 42%, rgba(255, 120, 166, .25), transparent 28%),
+    linear-gradient(135deg, #ff2c7a 0%, var(--berry) 48%, var(--berry-dark) 100%);
+  background-size: 120px 120px, 84px 84px, auto, auto;
+  font-family: 'Outfit', sans-serif;
+}
+
+.tobo-contact-header {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 92px;
+  padding: 1rem clamp(1rem, 5vw, 6rem);
+}
+
+.tobo-contact-back,
+.tobo-contact-products {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  width: fit-content;
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.tobo-contact-back { justify-self: start; }
+.tobo-contact-products { justify-self: end; }
+
+.tobo-contact-logo {
+  display: grid;
+  width: clamp(112px, 10vw, 160px);
+  height: 74px;
+  place-items: center;
+}
+
+.tobo-contact-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tobo-contact-main {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 3rem) 0 5rem;
+}
+
+.tobo-contact-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .7fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.tobo-contact-kicker,
+.tobo-contact-form-section span {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 0 0 1.1rem;
+  color: var(--lemon);
+  font-size: .8rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.tobo-contact-copy h1 {
+  max-width: 760px;
+  margin: 0;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(3.6rem, 8vw, 8rem);
+  line-height: .86;
+  letter-spacing: -.065em;
+}
+
+.tobo-contact-copy h1 em {
+  display: block;
+  color: var(--lemon);
+  font-style: normal;
+}
+
+.tobo-contact-copy > p:not(.tobo-contact-kicker) {
+  max-width: 640px;
+  margin: 1.6rem 0 0;
+  font-size: clamp(1rem, 1.5vw, 1.22rem);
+  line-height: 1.65;
+}
+
+.tobo-contact-card {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 4px solid var(--ink);
+  border-radius: 42px;
+  color: var(--ink);
+  background: #fff7e4;
+  box-shadow: 14px 16px 0 var(--lemon);
+  transform: rotate(1.5deg);
+}
+
+.tobo-contact-card::before {
+  content: '';
+  position: absolute;
+  right: -32px;
+  top: -34px;
+  width: 92px;
+  aspect-ratio: 1;
+  border: 4px solid rgba(255,255,255,.75);
+  border-radius: 50%;
+  background: var(--lemon);
+  z-index: -1;
+}
+
+.tobo-contact-card-badge {
+  display: inline-flex;
+  padding: .55rem .8rem;
+  border-radius: 999px;
+  color: white;
+  background: var(--berry);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.tobo-contact-card h2,
+.tobo-contact-form-section h2 {
+  margin: 1.2rem 0 1.1rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(2rem, 3.4vw, 3.7rem);
+  line-height: .95;
+  letter-spacing: -.045em;
+}
+
+.tobo-contact-info {
+  display: grid;
+  gap: .85rem;
+}
+
+.tobo-contact-info a,
+.tobo-contact-info p {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 0;
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.tobo-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.tobo-contact-mini-card {
+  min-height: 210px;
+  padding: 1.5rem;
+  border: 2px solid rgba(255,255,255,.55);
+  border-radius: 28px;
+  background: rgba(255,255,255,.13);
+  backdrop-filter: blur(10px);
+}
+
+.tobo-contact-mini-card div {
+  display: grid;
+  width: 48px;
+  aspect-ratio: 1;
+  margin-bottom: 1.2rem;
+  place-items: center;
+  border-radius: 16px;
+  color: var(--ink);
+  background: var(--lemon);
+}
+
+.tobo-contact-mini-card h3 {
+  margin: 0 0 .6rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.45rem;
+}
+
+.tobo-contact-mini-card p {
+  margin: 0;
+  color: rgba(255,255,255,.82);
+  line-height: 1.55;
+}
+
+.tobo-contact-form-section {
+  display: grid;
+  grid-template-columns: .8fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.4rem, 4vw, 3rem);
+  border-radius: 42px;
+  color: var(--ink);
+  background: var(--lemon);
+  box-shadow: inset 0 0 0 6px rgba(255,255,255,.35);
+}
+
+.tobo-contact-form-section span {
+  color: var(--berry);
+}
+
+.tobo-contact-form-section p {
+  max-width: 420px;
+  margin: 0;
+  line-height: 1.65;
+  font-weight: 650;
+}
+
+.tobo-contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.tobo-contact-form label {
+  display: grid;
+  gap: .45rem;
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.tobo-contact-form input,
+.tobo-contact-form textarea {
+  width: 100%;
+  border: 2px solid rgba(35,21,68,.25);
+  border-radius: 18px;
+  padding: 1rem;
+  color: var(--ink);
+  background: white;
+  font: 600 1rem/1.4 'Outfit', sans-serif;
+  outline: none;
+}
+
+.tobo-contact-form input:focus,
+.tobo-contact-form textarea:focus {
+  border-color: var(--berry);
+  box-shadow: 0 0 0 4px rgba(237,27,105,.16);
+}
+
+.tobo-contact-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: fit-content;
+  border: 0;
+  border-radius: 999px;
+  padding: 1rem 1.4rem;
+  color: white;
+  background: var(--ink);
+  font: 900 .9rem/1 'Outfit', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 0 rgba(237,27,105,.45);
+}
+
+@media (max-width: 800px) {
+  .tobo-contact-header {
+    min-height: 68px;
+    padding: .5rem .9rem;
+  }
+
+  .tobo-contact-back span,
+  .tobo-contact-products {
+    display: none;
+  }
+
+  .tobo-contact-logo {
+    width: 105px;
+    height: 58px;
+  }
+
+  .tobo-contact-main {
+    width: min(100% - 1.5rem, 620px);
+    padding-bottom: 3rem;
+  }
+
+  .tobo-contact-hero,
+  .tobo-contact-form-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tobo-contact-copy h1 {
+    font-size: clamp(3rem, 15vw, 4.8rem);
+  }
+
+  .tobo-contact-card {
+    border-width: 3px;
+    border-radius: 30px;
+    box-shadow: 8px 10px 0 var(--lemon);
+    transform: none;
+  }
+
+  .tobo-contact-grid {
+    grid-template-columns: 1fr;
+    margin: 2rem 0;
+  }
+
+  .tobo-contact-mini-card {
+    min-height: 0;
+  }
+
+  .tobo-contact-form-section {
+    border-radius: 28px;
+  }
+
+  .tobo-contact-form button {
+    width: 100%;
+  }
+}

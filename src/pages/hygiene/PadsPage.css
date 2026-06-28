@@ -4,7 +4,7 @@
   min-height: 100vh;
   font-family: 'Outfit', sans-serif;
   overflow-x: hidden;
-  padding: 60px 0 80px 0;
+  padding: 0 0 80px 0;
   box-sizing: border-box;
 
   /* Nav styles */
@@ -12,12 +12,21 @@
     max-width: 1200px;
     margin: 0 auto 1.5rem auto;
     padding: 0 4%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
+
+    .pads-nav-logo {
+      display: block;
+      width: clamp(130px, 14vw, 190px);
+      height: 68px;
+      object-fit: contain;
+    }
 
     .back-btn {
       display: flex;
+      width: fit-content;
+      justify-self: start;
       align-items: center;
       gap: 8px;
       color: #475569;
@@ -30,6 +39,7 @@
       background: #ffffff;
       border: 1px solid rgba(224, 242, 254, 0.8);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      white-space: nowrap;
 
       &:hover {
         color: #0284c7;
@@ -40,6 +50,7 @@
       }
 
       &.secondary {
+        justify-self: end;
         background: transparent;
         border-color: transparent;
         color: #0284c7;
@@ -1079,6 +1090,15 @@
   .pads-page-wrapper .pads-nav .back-btn {
     padding: 0.45rem 0.75rem;
     font-size: 0.8rem;
+  }
+
+  .pads-page-wrapper .pads-nav-logo {
+    width: 100px;
+    height: 48px;
+  }
+
+  .pads-page-wrapper .pads-nav .back-btn:not(.secondary) span {
+    display: none;
   }
 
   .pads-page-wrapper .pads-hero {

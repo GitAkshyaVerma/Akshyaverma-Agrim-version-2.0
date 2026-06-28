@@ -83,6 +83,11 @@ const DiapersPage = () => {
           <ArrowLeft size={18} />
           <span>Back to Products</span>
         </Link>
+        <img
+          src="/assets/hygiene/image-diapers-logo.png"
+          alt="4D Babyeezz"
+          className="diapers-nav-logo"
+        />
         <Link to="/hygiene" className="back-btn secondary">
           <span>Hygiene Division</span>
         </Link>
@@ -119,7 +124,7 @@ const DiapersPage = () => {
               </div>
 
               <div className="cta-group">
-                <Link to="/contact" className="btn-primary">
+                <Link to="/hygiene/contact" className="btn-primary">
                   Order Samples / Enquire
                 </Link>
                 <a href="#features" className="btn-secondary">
@@ -278,7 +283,7 @@ const DiapersPage = () => {
         <div className="cta-card">
           <h2>Distribute Babyeezz Diapers</h2>
           <p>Partner with Agrim International Nigeria to make quality, affordable diapers available to families in your trade region. Contact our team to explore bulk purchasing terms.</p>
-          <Link to="/contact" className="cta-btn">
+          <Link to="/hygiene/contact" className="cta-btn">
             Connect With Sales
           </Link>
         </div>

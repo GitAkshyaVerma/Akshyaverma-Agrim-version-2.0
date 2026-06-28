@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Heart, Activity, Smile, ArrowRight } from 'lucide-react';
+import { Heart, Activity, Smile, ArrowLeft, ArrowRight } from 'lucide-react';
 import './HygieneHubPage.css';
 
 const BRANDS = [
@@ -58,6 +58,11 @@ const HygieneHubPage = () => {
       </div>
 
       <div className="container">
+        <Link to="/products" className="hygiene-hub-back">
+          <ArrowLeft size={18} />
+          <span>Back to Products</span>
+        </Link>
+
         {/* Hero Section */}
         <header className="hygiene-hub-header">
           <motion.div
