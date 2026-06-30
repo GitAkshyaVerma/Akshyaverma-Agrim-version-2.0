@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Heart, Smile, Sparkles, ShieldCheck, Check } from 'lucide-react';
+import { ArrowLeft, Heart, Sparkles, ShieldCheck, Check } from 'lucide-react';
 import './DiapersPage.css';
 
 const DIAPER_FEATURES = [

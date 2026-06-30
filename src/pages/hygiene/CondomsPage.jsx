@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Shield, Sparkles, Zap, Heart, CheckCircle2, X, Users, Activity, ShieldCheck, BookOpen, Building2, HeartHandshake, Factory, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Heart, CheckCircle2, X, Users, Activity, ShieldCheck, BookOpen, Building2, HeartHandshake, Factory, TrendingUp } from 'lucide-react';
 import './CondomsPage.css';
 
 const BRANDS_DATA = {
