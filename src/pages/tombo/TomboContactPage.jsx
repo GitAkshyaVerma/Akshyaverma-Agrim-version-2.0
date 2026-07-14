@@ -6,7 +6,7 @@ const tomboSupport = [
   {
     icon: <Wine size={22} />,
     title: 'Premium spirits',
-    text: 'Enquire about Brandy, Whiskey, Irish Cream, Chocolate Liqueur and Herbal Bitters.',
+    text: 'Enquire about Brandy, Whiskey, Tombo Crimica, Chocolate Vodka and Herbal Bitters.',
   },
   {
     icon: <Building2 size={22} />,
@@ -113,8 +113,8 @@ const TomboContactPage = () => {
                 <select name="product">
                   <option>Tombo Brandy</option>
                   <option>Tombo Whiskey</option>
-                  <option>Tombo Irish Cream</option>
-                  <option>Tombo Chocolate Liqueur</option>
+                  <option>Tombo Tombo Crimica </option>
+                  <option>Tombo Chocolate Vodka</option>
                   <option>Tombo Herbal Bitters</option>
                   <option>Full premium range</option>
                 </select>

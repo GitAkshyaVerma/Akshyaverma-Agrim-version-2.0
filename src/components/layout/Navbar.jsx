@@ -65,7 +65,7 @@ const Navbar = () => {
           {/* Logo / Title (centered on mobile, left on desktop) */}
           <Link to="/" className="nav-logo">
             <img src={`${import.meta.env.BASE_URL}assets/newLogo.png`} alt="Agrim Internationals Logo" className="nav-logo-img" />
-            <span className="nav-brand-text">Agrim International</span>
+            <span className="nav-brand-text">Agrim</span>
           </Link>
 
           {/* Desktop links */}

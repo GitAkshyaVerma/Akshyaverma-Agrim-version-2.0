@@ -141,8 +141,8 @@ ul {
 
 .nav-logo-img {
   /* Logo fits inside the navbar with breathing room */
-  height: 56px;
-  width: 56px;
+  height: 79px;
+  width: 79px;
   object-fit: contain;
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.15));
   transition: filter var(--transition-normal);
@@ -3243,8 +3243,8 @@ textarea.form-input {
 
   .nav-logo-img {
     display: block !important;
-    width: 48px;
-    height: 48px;
+    width: 71px;
+    height: 71px;
   }
 
   .nav-brand-text {

@@ -31,7 +31,7 @@ export const productsData = [
   },
   {
     id: 'sauces',
-    title: 'Tomatoes Pastes',
+    title: 'Tomato Paste',
     desc: 'Topisto offers flavourful tomato mixes and cooking blends designed for Nigerian meals, helping households, caterers, and food operators prepare richer, consistent, and convenient everyday dishes.',
     shortDesc: 'Rich tomato blends crafted for bold, flavourful African cooking.',
     icon: <Droplets size={48} className="category-icon" />,

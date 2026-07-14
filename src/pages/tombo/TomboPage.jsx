@@ -29,25 +29,25 @@ const SLIDES = [
   },
   {
     id: 'chocolate',
-    name: 'Chocolate Liqueur',
-    title: 'Chocolate Liqueur',
+    name: 'Chocolate Vodka',
+    title: 'Chocolate Vodka',
     tag: 'Tombo Premium Range',
     desc: 'Indulge in the velvet-smooth blend of rich dark chocolate cocoa, premium spirit infusion, and decadent sweetness.',
     video: `${import.meta.env.BASE_URL}assets/tombo/vodka_choclate_final.mp4`,
     poster: `${import.meta.env.BASE_URL}assets/tombo/Vodka_chocolate_bottle_final.jpeg`,
     mobilePoster: `${import.meta.env.BASE_URL}assets/tombo/mobile/vodka_choclate.jpeg`,
-    specs: { abv: '17%', aging: 'Cocoa Infused', character: 'Rich & Velvety' }
+    specs: { abv: '42%', aging: 'Cocoa Infused', character: 'Rich & Velvety' }
   },
   {
     id: 'cream',
-    name: 'Irish Cream',
-    title: 'Irish Cream',
+    name: 'Tombo Crimica',
+    title: 'Tombo Crimica',
     tag: 'Tombo Premium Range',
     desc: 'A luscious harmony of fresh natural dairy cream, fine spirits, and hints of vanilla and cocoa for a smooth, velvety pour.',
     video: `${import.meta.env.BASE_URL}assets/tombo/cremica.mp4`,
     poster: `${import.meta.env.BASE_URL}assets/tombo/cremica.jpeg`,
     mobilePoster: `${import.meta.env.BASE_URL}assets/tombo/mobile/cremica.jpeg`,
-    specs: { abv: '17%', aging: 'Dairy Cream Blend', character: 'Silky & Creamy' }
+    specs: { abv: '15%', aging: 'Dairy Cream Blend', character: 'Silky & Creamy' }
   },
   {
     id: 'bitters',
@@ -58,7 +58,7 @@ const SLIDES = [
     video: `${import.meta.env.BASE_URL}assets/tombo/Bitters.mp4`,
     poster: `${import.meta.env.BASE_URL}assets/tombo/bitters.jpeg`,
     mobilePoster: `${import.meta.env.BASE_URL}assets/tombo/mobile/bitters.jpeg`,
-    specs: { abv: '35%', aging: '27 Botanicals', character: 'Bold & Complex' }
+    specs: { aging: '27 Botanicals', character: 'Bold & Complex' }
   }
 ];
 
@@ -387,10 +387,12 @@ const TomboPage = () => {
                   
                   {/* Specifications Badge list */}
                   <div className="tombo-hero-specs" onClick={(e) => isMobile && e.stopPropagation()}>
-                    <div className="spec-badge">
-                      <span className="spec-val">{SLIDES[activeSlide].specs.abv}</span>
-                      <span className="spec-lbl">ABV Strength</span>
-                    </div>
+                    {SLIDES[activeSlide].specs.abv && (
+                      <div className="spec-badge">
+                        <span className="spec-val">{SLIDES[activeSlide].specs.abv}</span>
+                        <span className="spec-lbl">ABV Strength</span>
+                      </div>
+                    )}
                     <div className="spec-badge">
                       <span className="spec-val">{SLIDES[activeSlide].specs.aging}</span>
                       <span className="spec-lbl">Distillation</span>
@@ -629,7 +631,7 @@ const TomboPage = () => {
                           <div className="collection-video-preview">
                             <video poster={slide.poster} src={slide.video} muted loop playsInline autoPlay />
                             <div className="card-glass-overlay"></div>
-                            <span className="abv-tag">{slide.specs.abv} ABV</span>
+                            {slide.specs.abv && <span className="abv-tag">{slide.specs.abv} ABV</span>}
                           </div>
                           <div className="collection-card-details">
                             <h3>{slide.name}</h3>
@@ -657,10 +659,12 @@ const TomboPage = () => {
                             <p className="card-desc-back">{slide.desc}</p>
                             
                             <div className="specs-grid-back">
-                              <div className="spec-item-back">
-                                <span className="spec-label-back">ABV Strength:</span>
-                                <span className="spec-value-back">{slide.specs.abv}</span>
-                              </div>
+                              {slide.specs.abv && (
+                                <div className="spec-item-back">
+                                  <span className="spec-label-back">ABV Strength:</span>
+                                  <span className="spec-value-back">{slide.specs.abv}</span>
+                                </div>
+                              )}
                               <div className="spec-item-back">
                                 <span className="spec-label-back">Distillation:</span>
                                 <span className="spec-value-back">{slide.specs.aging}</span>
