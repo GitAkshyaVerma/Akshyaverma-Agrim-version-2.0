@@ -13,8 +13,21 @@ const MARQUEE_TEXTS = [
 
 const TopistoPage = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isCommunityCareOpen, setIsCommunityCareOpen] = useState(false);
   const [isEnquireOpen, setIsEnquireOpen] = useState(false);
   const [activeFlavourIndex, setActiveFlavourIndex] = useState(0);
+
+  useEffect(() => {
+    const closeOpenModal = (event) => {
+      if (event.key !== 'Escape') return;
+      setIsAboutOpen(false);
+      setIsCommunityCareOpen(false);
+      setIsEnquireOpen(false);
+    };
+
+    window.addEventListener('keydown', closeOpenModal);
+    return () => window.removeEventListener('keydown', closeOpenModal);
+  }, []);
 
   // --- Scroll Parallax ---
   const { scrollYProgress } = useScroll();
@@ -184,6 +197,16 @@ const TopistoPage = () => {
             <a href="https://www.facebook.com/Topistonigeria" className="social-icon" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </a>
+            <button
+              className="social-icon community-care-icon"
+              onClick={() => setIsCommunityCareOpen(true)}
+              aria-label="Open Topisto Community Care Program"
+              title="Community Care"
+            >
+              <svg className="community-heart-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </button>
           </div>
 
           <div className="footer-center">
@@ -241,20 +264,20 @@ const TopistoPage = () => {
               <button className="about-modal-close" onClick={() => setIsAboutOpen(false)} aria-label="Close modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
-              
+
               <div className="about-modal-scrollable">
                 <h2 className="about-modal-title">About Us</h2>
                 <div className="about-modal-body">
                   <p className="highlight-text">"Bringing richer flavour to every kitchen."</p>
-                  
-                  <p>Topisto is a fast-growing food brand by Agrim International Nigeria, created to provide rich, flavourful, and convenient cooking solutions for modern African kitchens.</p>
-                  
+
+                  <p>Topisto is a fast-growing food brand by Mohan Agro Foods Fze, created to provide rich, flavourful, and convenient cooking solutions for modern African kitchens.</p>
+
                   <p>With a strong understanding of Nigerian cooking preferences, Topisto products are carefully developed to enhance taste, improve meal consistency, and make food preparation easier for households, restaurants, caterers, and food service operators.</p>
-                  
+
                   <p>Our product range includes flavourful tomato mixes and cooking blends designed for everyday meals, festive dishes, and traditional recipes. Whether used in jollof rice, stews, soups, sauces, or local delicacies, Topisto helps bring depth, colour, and reliable taste to every dish.</p>
-                  
+
                   <p>At Topisto, we believe good food brings families and communities together. That is why our products are made to be affordable, easy to use, and suitable for both home and commercial cooking.</p>
-                  
+
                   <p>We are committed to supporting kitchens with dependable products that deliver rich flavour, consistent quality, and everyday convenience.</p>
 
                   <div className="purpose-promise-container">
@@ -267,7 +290,7 @@ const TopistoPage = () => {
                         <li><strong>African Heritage:</strong> Tailoring specific food solutions for traditional African meals.</li>
                       </ul>
                     </div>
-                    
+
                     <div className="modal-info-card">
                       <h3>Our Promise</h3>
                       <ul>
@@ -278,6 +301,66 @@ const TopistoPage = () => {
                       </ul>
                     </div>
                   </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal Popup for Community Care */}
+      <AnimatePresence>
+        {isCommunityCareOpen && (
+          <motion.div
+            className="about-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsCommunityCareOpen(false)}
+          >
+            <motion.div
+              className="about-modal-content community-care-modal-content"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="community-care-title"
+              initial={{ scale: 0.9, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.9, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="about-modal-close" onClick={() => setIsCommunityCareOpen(false)} aria-label="Close Community Care popup">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+
+              <div className="about-modal-scrollable">
+                <div className="community-care-heading">
+                  <span className="community-care-heart" aria-hidden="true">♥</span>
+                  <div>
+                    <span className="community-care-eyebrow">TOPISTO COMMUNITY CARE PROGRAM</span>
+                    <h2 id="community-care-title" className="about-modal-title">Nourishing Communities Together</h2>
+                  </div>
+                </div>
+
+                <div className="about-modal-body community-care-body">
+                  <p className="highlight-text">At Agrim International Nigeria, food represents care, dignity, and community.</p>
+                  <p>Through Topisto Community Care, we support food assistance efforts and outreach programs for vulnerable communities, orphanages, and underserved groups.</p>
+
+                  <div className="community-care-card">
+                    <h3>Orphanage Support Program</h3>
+                    <p>Topisto periodically supports orphanages and community welfare initiatives through:</p>
+                    <ul>
+                      <li>Food donations</li>
+                      <li>Cooking support</li>
+                      <li>Meal sponsorships</li>
+                      <li>Community feeding initiatives</li>
+                      <li>Family care outreach</li>
+                    </ul>
+                  </div>
+
+                  <p>We believe every child deserves warmth, care, nutrition, and hope.</p>
+                  <blockquote>“Sharing Meals. Sharing Hope.”</blockquote>
+                  <p className="community-care-note">Many Nigerian companies support orphanages through food and welfare donations as part of community responsibility programs, helping vulnerable children with meals and essential supplies.</p>
                 </div>
               </div>
             </motion.div>
@@ -306,17 +389,17 @@ const TopistoPage = () => {
               <button className="about-modal-close" onClick={() => setIsEnquireOpen(false)} aria-label="Close modal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
               </button>
-              
+
               <div className="about-modal-scrollable">
                 <h2 className="about-modal-title">Enquire Now</h2>
                 <p className="enquire-subtitle">Interested in Topisto for your home or business? Send us a message and our team will get back to you shortly.</p>
-                
+
                 <form className="enquire-form" onSubmit={(e) => { e.preventDefault(); alert('Thank you for your enquiry! Our team will get back to you soon.'); setIsEnquireOpen(false); }}>
                   <div className="form-group">
                     <label htmlFor="fullName">Full Name</label>
                     <input type="text" id="fullName" required placeholder="Enter your full name" />
                   </div>
-                  
+
                   <div className="form-group-row">
                     <div className="form-group">
                       <label htmlFor="email">Email Address</label>
@@ -327,7 +410,7 @@ const TopistoPage = () => {
                       <input type="tel" id="phone" required placeholder="e.g. +234..." />
                     </div>
                   </div>
-                  
+
                   <div className="form-group">
                     <label htmlFor="interest">Interested In</label>
                     <select id="interest" required defaultValue="tomato-paste">
@@ -337,12 +420,12 @@ const TopistoPage = () => {
                       <option value="other">Other Inquiry</option>
                     </select>
                   </div>
-                  
+
                   <div className="form-group">
                     <label htmlFor="message">Your Message</label>
                     <textarea id="message" rows="4" required placeholder="Describe your requirement in detail..."></textarea>
                   </div>
-                  
+
                   <button type="submit" className="btn-submit-enquiry">
                     Submit Enquiry
                   </button>

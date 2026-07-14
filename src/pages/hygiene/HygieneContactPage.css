@@ -1,0 +1,289 @@
+.hygiene-contact-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(16, 185, 129, .14), transparent 26%),
+    radial-gradient(circle at 92% 18%, rgba(14, 165, 233, .18), transparent 28%),
+    linear-gradient(135deg, #f0fdf4 0%, #f0f9ff 48%, #fff1f2 100%);
+  font-family: 'Outfit', sans-serif;
+}
+
+.hygiene-contact-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: min(1200px, calc(100% - 2rem));
+  min-height: 84px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.hygiene-contact-back,
+.hygiene-contact-products {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  width: fit-content;
+  border: 1px solid rgba(148, 163, 184, .24);
+  border-radius: 999px;
+  padding: .72rem 1rem;
+  color: #334155;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .05);
+  font-size: .92rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hygiene-contact-back { justify-self: start; }
+.hygiene-contact-products { justify-self: end; }
+
+.hygiene-contact-brand {
+  justify-self: center;
+  border-radius: 999px;
+  padding: .8rem 1.2rem;
+  color: #047857;
+  background: white;
+  font-weight: 800;
+  letter-spacing: .02em;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, .08);
+}
+
+.hygiene-contact-main {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 3rem) 0 5rem;
+}
+
+.hygiene-contact-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .58fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.hygiene-contact-eyebrow,
+.hygiene-contact-panel > span,
+.hygiene-contact-form-intro span {
+  display: inline-flex;
+  margin: 0 0 1rem;
+  color: #0284c7;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.hygiene-contact-copy h1 {
+  max-width: 760px;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 5.7vw, 6rem);
+  line-height: 1.02;
+  color: #0f172a;
+}
+
+.hygiene-contact-copy p {
+  max-width: 680px;
+  margin: 1.4rem 0 0;
+  color: #475569;
+  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.hygiene-contact-panel {
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 34px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, .1);
+  backdrop-filter: blur(14px);
+}
+
+.hygiene-contact-panel h2,
+.hygiene-contact-form-intro h2 {
+  margin: 0 0 1.2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  line-height: 1.05;
+}
+
+.hygiene-contact-info {
+  display: grid;
+  gap: .9rem;
+}
+
+.hygiene-contact-info a,
+.hygiene-contact-info p {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 0;
+  border: 1px solid rgba(226, 232, 240, .8);
+  border-radius: 18px;
+  padding: 1rem;
+  color: #334155;
+  background: #f8fafc;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.hygiene-contact-info svg {
+  color: #10b981;
+  flex: 0 0 auto;
+}
+
+.hygiene-contact-lines {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.hygiene-contact-lines article {
+  padding: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, .86);
+  border-radius: 28px;
+  background: rgba(255,255,255,.76);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, .06);
+}
+
+.hygiene-contact-lines div {
+  display: grid;
+  width: 50px;
+  aspect-ratio: 1;
+  margin-bottom: 1.1rem;
+  place-items: center;
+  border-radius: 16px;
+  color: white;
+  background: linear-gradient(135deg, #10b981, #0284c7);
+}
+
+.hygiene-contact-lines h3 {
+  margin: 0 0 .55rem;
+  font-size: 1.25rem;
+}
+
+.hygiene-contact-lines p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.hygiene-contact-form-wrap {
+  display: grid;
+  grid-template-columns: .62fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.4rem, 4vw, 3rem);
+  border-radius: 34px;
+  background: #ffffff;
+  box-shadow: 0 28px 80px rgba(15, 23, 42, .09);
+}
+
+.hygiene-contact-form-intro p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.hygiene-contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.hygiene-contact-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.hygiene-contact-form label {
+  display: grid;
+  gap: .45rem;
+  color: #334155;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hygiene-contact-form input,
+.hygiene-contact-form select,
+.hygiene-contact-form textarea {
+  width: 100%;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  padding: 1rem;
+  color: #0f172a;
+  background: #f8fafc;
+  font: 600 1rem/1.4 'Outfit', sans-serif;
+  outline: none;
+}
+
+.hygiene-contact-form input:focus,
+.hygiene-contact-form select:focus,
+.hygiene-contact-form textarea:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, .12);
+}
+
+.hygiene-contact-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: fit-content;
+  border: 0;
+  border-radius: 999px;
+  padding: 1rem 1.35rem;
+  color: white;
+  background: linear-gradient(135deg, #10b981, #0284c7);
+  font: 800 .9rem/1 'Outfit', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(14, 165, 233, .22);
+}
+
+@media (max-width: 800px) {
+  .hygiene-contact-nav {
+    grid-template-columns: 1fr auto 1fr;
+    min-height: 68px;
+  }
+
+  .hygiene-contact-back span,
+  .hygiene-contact-products {
+    display: none;
+  }
+
+  .hygiene-contact-back {
+    padding: .68rem;
+  }
+
+  .hygiene-contact-brand {
+    padding: .7rem .9rem;
+    font-size: .8rem;
+  }
+
+  .hygiene-contact-hero,
+  .hygiene-contact-form-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .hygiene-contact-copy h1 {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+
+  .hygiene-contact-lines,
+  .hygiene-contact-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hygiene-contact-lines {
+    margin: 2rem 0;
+  }
+
+  .hygiene-contact-form button {
+    width: 100%;
+  }
+}

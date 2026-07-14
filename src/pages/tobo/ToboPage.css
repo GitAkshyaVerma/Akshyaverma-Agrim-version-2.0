@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap');
+
+.tobo-page {
+  --berry: #ed1b69;
+  --berry-dark: #a4074b;
+  --lemon: #ffe43b;
+  --ink: #231544;
+  --cream: #fffaf0;
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--lemon);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.tobo-page * { box-sizing: border-box; }
+.tobo-page h1, .tobo-page h2 { font-family: 'Fredoka', sans-serif; }
+.tobo-page a { color: inherit; }
+
+.tobo-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  height: 98px;
+  padding: 0 clamp(1.25rem, 5vw, 5rem);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  color: white;
+}
+
+.tobo-back, .tobo-nav, .tobo-cta, .tobo-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+}
+
+.tobo-back { justify-self: start; font-size: .9rem; font-weight: 700; }
+.tobo-back:hover svg { transform: translateX(-4px); }
+.tobo-back svg, .tobo-cta svg, .tobo-footer svg { transition: transform .25s ease; }
+
+.tobo-logo {
+  display: grid;
+  width: clamp(120px, 10vw, 165px);
+  height: 90px;
+  place-items: center;
+}
+
+.tobo-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.tobo-nav { justify-content: flex-end; gap: clamp(1rem, 2.5vw, 2.5rem); font-size: .9rem; font-weight: 700; }
+.tobo-nav a { position: relative; }
+.tobo-nav a::after { content: ''; position: absolute; height: 2px; inset: auto 50% -6px; background: currentColor; transition: inset .25s; }
+.tobo-nav a:hover::after { inset-inline: 0; }
+
+.tobo-cta {
+  width: fit-content;
+  justify-content: center;
+  padding: .9rem 1.25rem;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-weight: 800;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.tobo-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 0 rgba(35, 21, 68, .18); }
+.tobo-cta:hover svg, .tobo-footer a:hover svg { transform: translateX(4px); }
+.tobo-cta--nav { display: none; }
+
+.tobo-panel {
+  min-height: 72svh;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 5rem);
+  padding: 7rem clamp(1.5rem, 7vw, 8rem) 4.5rem;
+}
+
+.tobo-panel--berry {
+  color: white;
+  background:
+    radial-gradient(circle at 15% 28%, rgba(255,255,255,.16) 0 2px, transparent 3px),
+    radial-gradient(circle at 72% 20%, rgba(255,228,59,.24) 0 4px, transparent 5px),
+    linear-gradient(135deg, #ff3480 0%, var(--berry) 52%, var(--berry-dark) 100%);
+  background-size: 55px 55px, 85px 85px, auto;
+}
+
+.tobo-panel--pineapple {
+  min-height: 65svh;
+  padding-top: 7rem;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 85% 25%, rgba(255,255,255,.75) 0 4px, transparent 5px),
+    var(--lemon);
+  background-size: 75px 75px, auto;
+}
+
+.tobo-copy { position: relative; z-index: 5; width: 100%; max-width: 610px; }
+.tobo-copy--right { justify-self: end; }
+.tobo-kicker { display: flex; align-items: center; gap: .5rem; height: 1.2rem; margin: 0 0 1.2rem; overflow: hidden; font-size: .78rem; font-weight: 800; letter-spacing: .16em; line-height: 1.2rem; text-transform: uppercase; white-space: nowrap; }
+.tobo-kicker svg { flex: 0 0 auto; }
+.tobo-copy h1, .tobo-copy h2 { height: 1.66em; margin: 0; overflow: hidden; font-size: clamp(3.25rem, 5.5vw, 6.3rem); line-height: .83; letter-spacing: -.065em; }
+.tobo-copy h1 span, .tobo-copy h1 em,
+.tobo-copy h2 span, .tobo-copy h2 em { display: block; overflow: hidden; text-overflow: clip; white-space: nowrap; }
+.tobo-copy em { color: var(--lemon); font-style: normal; }
+.tobo-panel--pineapple .tobo-copy em { color: var(--berry); }
+.tobo-description { display: -webkit-box; width: 100%; max-width: 500px; height: 4.5em; margin: 1.3rem 0 1.5rem; overflow: hidden; font-size: clamp(.95rem, 1.2vw, 1.12rem); line-height: 1.5; opacity: .9; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+
+.tobo-candy-tray { width: min(100%, 430px); }
+.tobo-tray-heading { display: flex; align-items: center; gap: .4rem; margin: 0 0 .7rem .25rem; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.tobo-tray-scroll {
+  display: flex;
+  gap: .7rem;
+  width: 100%;
+  padding: .25rem .2rem .8rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.7) transparent;
+}
+.tobo-candy-tray--pineapple .tobo-tray-scroll { scrollbar-color: var(--berry) transparent; }
+.tobo-tray-scroll::-webkit-scrollbar { height: 4px; }
+.tobo-tray-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,.2); border-radius: 99px; }
+.tobo-tray-scroll::-webkit-scrollbar-thumb { background: currentColor; border-radius: 99px; }
+.tobo-mini-candy {
+  padding: 0;
+  flex: 0 0 106px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 2px solid rgba(255,255,255,.85);
+  border-radius: 17px;
+  color: var(--ink);
+  background: white;
+  box-shadow: 0 7px 0 rgba(91,0,45,.2);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.tobo-mini-candy:hover { transform: translateY(-3px) rotate(-1deg); }
+.tobo-mini-candy:focus-visible { outline: 3px solid var(--lemon); outline-offset: 3px; }
+.tobo-mini-candy.is-selected { border-color: var(--lemon); box-shadow: 0 7px 0 var(--ink); transform: translateY(-3px); }
+.tobo-mini-candy img { display: block; width: 100%; height: 70px; padding: .2rem; object-fit: contain; border-bottom: 1px solid #eee; background: #fff; }
+.tobo-mini-candy div { display: flex; height: 3.35rem; flex-direction: column; padding: .55rem .6rem .65rem; line-height: 1.15; }
+.tobo-mini-candy strong { overflow: hidden; font: 700 .78rem/1.1 'Fredoka', sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+.tobo-mini-candy small { margin-top: .25rem; color: #715f7e; font-size: .61rem; }
+.tobo-candy-tray--pineapple .tobo-mini-candy { border-color: var(--ink); box-shadow: 0 6px 0 rgba(237,27,105,.3); }
+.tobo-candy-tray--pineapple .tobo-mini-candy.is-selected { border-color: var(--berry); box-shadow: 0 6px 0 var(--ink); }
+
+.tobo-product-visual { position: relative; z-index: 4; display: grid; place-items: center; min-height: 430px; }
+.tobo-image-card { position: relative; width: min(100%, 540px); aspect-ratio: 1.2; overflow: hidden; border: 5px solid rgba(255,255,255,.9); border-radius: 50% 42% 48% 44%; background: white; box-shadow: 0 28px 60px rgba(78, 0, 38, .28); transform: rotate(4deg); animation: tobo-float 5s ease-in-out infinite; }
+.tobo-image-card img { width: 100%; height: 100%; display: block; padding: clamp(.4rem, 1.5vw, 1rem); object-fit: contain; animation: tobo-candy-enter .35s ease both; }
+.tobo-product-visual--pine .tobo-image-card { width: min(100%, 560px); aspect-ratio: 1.35; border-color: var(--ink); box-shadow: 0 22px 0 rgba(237, 27, 105, .2); transform: rotate(-4deg); animation-delay: -2s; }
+
+.tobo-bubble { position: absolute; z-index: -1; border-radius: 50%; border: 2px solid rgba(255,255,255,.5); }
+.tobo-bubble--one { width: 160px; height: 160px; top: 2%; right: 0; background: rgba(255,228,59,.65); }
+.tobo-bubble--two { width: 65px; height: 65px; bottom: 10%; left: 0; background: rgba(255,255,255,.25); }
+.tobo-bubble--three { width: 28px; height: 28px; top: 14%; left: 9%; background: white; }
+.tobo-bubble--four { width: 145px; height: 145px; left: -3%; bottom: 6%; background: var(--berry); border-color: var(--ink); }
+.tobo-bubble--five { width: 42px; height: 42px; right: 6%; top: 9%; background: white; border-color: var(--ink); }
+.tobo-sunburst { position: absolute; width: 88%; aspect-ratio: 1; border-radius: 50%; background: repeating-conic-gradient(from 4deg, rgba(255,255,255,.5) 0 8deg, transparent 8deg 18deg); }
+.tobo-flavour-tag { position: absolute; right: -1rem; bottom: 8%; display: grid; place-items: center; width: 115px; aspect-ratio: 1; border-radius: 43% 57% 58% 42%; color: var(--ink); background: var(--lemon); font: 700 1.15rem/1.05 'Fredoka', sans-serif; text-align: center; transform: rotate(9deg); box-shadow: 7px 8px 0 var(--ink); }
+.tobo-flavour-tag--pine { left: 0; right: auto; color: white; background: var(--berry); transform: rotate(-10deg); }
+
+.tobo-scroll-cue { position: absolute; z-index: 5; bottom: 3rem; left: 50%; display: flex; align-items: center; gap: .5rem; font-size: .75rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; transform: translateX(-50%); }
+.tobo-scroll-cue svg { animation: tobo-bounce 1.7s ease-in-out infinite; }
+.tobo-mobile-wave {
+  position: absolute;
+  z-index: 2;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  display: block;
+  width: calc(100% + 2px);
+  height: clamp(86px, 9vw, 145px);
+  pointer-events: none;
+  transform: translateY(clamp(30px, 3vw, 48px));
+}
+.tobo-wave-ribbon { fill: white; }
+.tobo-wave-fill { fill: var(--lemon); }
+
+.tobo-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+  gap: clamp(2.5rem, 7vw, 8rem);
+  align-items: center;
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.5rem, 8vw, 9rem);
+  color: white;
+  background: var(--ink);
+}
+.tobo-story-copy { max-width: 780px; }
+.tobo-story-kicker { display: flex; align-items: center; gap: .55rem; margin: 0 0 1.3rem; color: var(--lemon); font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+.tobo-story h2 { margin: 0 0 2rem; font-size: clamp(3rem, 5.7vw, 6.5rem); line-height: .92; letter-spacing: -.055em; }
+.tobo-story h2 em { color: #ff4d91; font-style: normal; }
+.tobo-story-copy > p:not(.tobo-story-kicker) { max-width: 690px; margin: 0 0 1rem; color: rgba(255,255,255,.78); font-size: clamp(1rem, 1.3vw, 1.16rem); line-height: 1.7; }
+.tobo-story-card { padding: clamp(2rem, 4vw, 3.4rem); border: 2px solid var(--lemon); border-radius: 34px; color: var(--ink); background: var(--lemon); box-shadow: 12px 14px 0 #ff4d91; transform: rotate(1.5deg); }
+.tobo-story-card > span { font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.tobo-story-card blockquote { margin: 1.2rem 0; font: 700 clamp(2rem, 3.4vw, 3.7rem)/1 'Fredoka', sans-serif; letter-spacing: -.045em; }
+.tobo-story-card > p { margin: 0 0 1.5rem; font-weight: 600; line-height: 1.5; }
+.tobo-story-pills { display: flex; flex-wrap: wrap; gap: .55rem; }
+.tobo-story-pills span { padding: .55rem .8rem; border: 1px solid rgba(35,21,68,.28); border-radius: 999px; font-size: .72rem; font-weight: 700; }
+.tobo-values { display: grid; grid-template-columns: repeat(3, 1fr); color: var(--ink); background: #fff7e4; }
+.tobo-values > div { min-height: 190px; padding: 2.5rem clamp(1.5rem, 4vw, 4rem); display: flex; flex-direction: column; justify-content: center; border-right: 1px solid rgba(35,21,68,.15); }
+.tobo-values > div:last-child { border-right: 0; }
+.tobo-values strong { margin-bottom: .5rem; font: 700 clamp(1.35rem, 2vw, 2rem)/1.1 'Fredoka', sans-serif; }
+.tobo-values span { max-width: 330px; color: #715f7e; line-height: 1.5; }
+
+.tobo-footer { min-height: 150px; padding: 2rem clamp(1.5rem, 8vw, 8rem); display: flex; align-items: center; justify-content: space-between; gap: 2rem; color: var(--ink); background: #fff7e4; }
+.tobo-logo--footer { width: 150px; height: 90px; }
+.tobo-footer > p { font-weight: 600; }
+.tobo-footer a { font-weight: 800; }
+
+@keyframes tobo-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+@keyframes tobo-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@keyframes tobo-candy-enter { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
+
+@media (max-width: 980px) {
+  .tobo-header { grid-template-columns: 1fr auto 1fr; }
+  .tobo-nav { display: none; }
+  .tobo-cta--nav { display: inline-flex; justify-self: end; padding: .7rem 1rem; font-size: .8rem; }
+  .tobo-panel { grid-template-columns: 1fr 1fr; padding-inline: 2rem; }
+  .tobo-copy h1, .tobo-copy h2 { font-size: clamp(2.7rem, 5.5vw, 4.4rem); }
+  .tobo-product-visual { min-height: 390px; }
+  .tobo-image-card { aspect-ratio: 1; }
+  .tobo-product-visual--pine .tobo-image-card { aspect-ratio: 1.15; }
+  .tobo-mobile-wave { transform: translateY(clamp(14px, 2vw, 20px)); }
+  .tobo-story { grid-template-columns: 1fr; }
+  .tobo-story-card { max-width: 650px; }
+}
+
+@media (max-width: 700px) {
+  .tobo-page { min-height: 100svh; overflow: hidden; }
+  .tobo-page main { display: block; height: auto; }
+  .tobo-header { height: 60px; padding-inline: .9rem; border-bottom: 1px solid rgba(255,255,255,.22); }
+  .tobo-back span, .tobo-cta--nav { display: none; }
+  .tobo-logo { width: 105px; height: 58px; }
+  .tobo-panel {
+    min-height: 0;
+    height: max(53svh, 360px);
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: .7rem;
+    padding: 3.6rem .9rem 1.5rem;
+    text-align: left;
+  }
+  .tobo-panel--berry {
+    grid-template-areas: 'visual copy';
+    overflow: hidden;
+  }
+  .tobo-panel--pineapple {
+    height: max(47svh, 320px);
+    grid-template-areas: 'copy visual';
+    padding: 2.4rem .9rem .7rem;
+  }
+  .tobo-panel--berry .tobo-copy { grid-area: copy; }
+  .tobo-panel--berry .tobo-product-visual { grid-area: visual; }
+  .tobo-panel--pineapple .tobo-copy { grid-area: copy; }
+  .tobo-panel--pineapple .tobo-product-visual { grid-area: visual; }
+  .tobo-copy, .tobo-copy--right { width: 100%; max-width: none; justify-self: stretch; }
+  .tobo-kicker { height: .75rem; gap: .25rem; margin-bottom: .4rem; font-size: clamp(.39rem, 1.75vw, .48rem); letter-spacing: .06em; line-height: .75rem; }
+  .tobo-kicker svg { width: 11px; height: 11px; }
+  .tobo-copy h1, .tobo-copy h2 { height: 1.72em; font-size: clamp(1.65rem, 7.6vw, 2.8rem); line-height: .86; }
+  .tobo-description {
+    height: 2.6em;
+    margin: .55rem 0 .65rem;
+    font-size: clamp(.62rem, 2.2vw, .78rem);
+    line-height: 1.3;
+    -webkit-line-clamp: 2;
+  }
+  .tobo-candy-tray { width: min(100%, 205px); margin: 0; text-align: left; }
+  .tobo-tray-heading { margin: 0 0 .3rem .1rem; font-size: .43rem; letter-spacing: .05em; }
+  .tobo-tray-heading svg { width: 10px; }
+  .tobo-tray-scroll { gap: .38rem; padding: .1rem .1rem .35rem; scrollbar-width: none; }
+  .tobo-tray-scroll::-webkit-scrollbar { display: none; }
+  .tobo-mini-candy { flex-basis: 62px; border-width: 1.5px; border-radius: 10px; box-shadow: 0 3px 0 rgba(91,0,45,.2); }
+  .tobo-mini-candy img { height: 40px; padding: .1rem; }
+  .tobo-mini-candy div { height: 1.5rem; justify-content: center; padding: .28rem .35rem .35rem; }
+  .tobo-mini-candy strong { font-size: .52rem; }
+  .tobo-mini-candy small { display: none; }
+  .tobo-candy-tray--pineapple .tobo-mini-candy { box-shadow: 0 3px 0 rgba(237,27,105,.3); }
+  .tobo-product-visual { min-height: 0; width: 100%; height: 100%; }
+  .tobo-image-card,
+  .tobo-product-visual--pine .tobo-image-card { width: 100%; max-height: 180px; aspect-ratio: 1 / 1.05; border-width: 2px; box-shadow: 0 12px 22px rgba(78,0,38,.24); }
+  .tobo-product-visual--pine .tobo-image-card { aspect-ratio: 1.15; box-shadow: 0 7px 0 rgba(237,27,105,.25); }
+  .tobo-image-card img { padding: .2rem; }
+  .tobo-flavour-tag {
+    display: grid;
+    z-index: 3;
+    right: .85rem;
+    bottom: 1.75rem;
+    left: auto;
+    width: clamp(48px, 13vw, 62px);
+    padding: .25rem;
+    font-size: clamp(.48rem, 2vw, .66rem);
+    line-height: 1.05;
+    box-shadow: 3px 4px 0 var(--ink);
+    transform: rotate(7deg);
+  }
+  .tobo-flavour-tag--pine {
+    right: -.15rem;
+    bottom: 2.75rem;
+    left: auto;
+    transform: rotate(7deg);
+  }
+  .tobo-bubble--one, .tobo-bubble--four { width: 70px; height: 70px; }
+  .tobo-bubble--two, .tobo-bubble--five { width: 24px; height: 24px; }
+  .tobo-bubble--three { display: none; }
+  .tobo-scroll-cue { display: none; }
+  .tobo-mobile-wave {
+    bottom: -16px;
+    height: clamp(58px, 10vh, 88px);
+    transform: none;
+  }
+  .tobo-story {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 4.5rem 1.25rem;
+  }
+  .tobo-story-kicker { margin-bottom: 1rem; font-size: .68rem; }
+  .tobo-story h2 { margin-bottom: 1.4rem; font-size: clamp(2.65rem, 13vw, 4rem); }
+  .tobo-story-copy > p:not(.tobo-story-kicker) { font-size: .94rem; line-height: 1.6; }
+  .tobo-story-card { padding: 1.7rem; border-radius: 24px; box-shadow: 7px 8px 0 #ff4d91; transform: none; }
+  .tobo-story-card blockquote { font-size: clamp(2rem, 10vw, 3rem); }
+  .tobo-values { display: grid; grid-template-columns: 1fr; }
+  .tobo-values > div { min-height: 0; padding: 2rem 1.25rem; border-right: 0; border-bottom: 1px solid rgba(35,21,68,.15); }
+  .tobo-values > div:last-child { border-bottom: 0; }
+  .tobo-footer { display: flex; min-height: 0; padding: 2rem 1.25rem; flex-direction: column; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tobo-page *, .tobo-page *::before, .tobo-page *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

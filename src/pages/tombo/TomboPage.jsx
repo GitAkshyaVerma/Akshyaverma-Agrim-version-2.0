@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Award, Compass, Zap, ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Award, Compass, Zap, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Check } from 'lucide-react';
 import './TomboPage.css';
 
 const SLIDES = [
@@ -29,25 +29,25 @@ const SLIDES = [
   },
   {
     id: 'chocolate',
-    name: 'Chocolate Liqueur',
-    title: 'Chocolate Liqueur',
+    name: 'Chocolate Vodka',
+    title: 'Chocolate Vodka',
     tag: 'Tombo Premium Range',
     desc: 'Indulge in the velvet-smooth blend of rich dark chocolate cocoa, premium spirit infusion, and decadent sweetness.',
     video: `${import.meta.env.BASE_URL}assets/tombo/vodka_choclate_final.mp4`,
     poster: `${import.meta.env.BASE_URL}assets/tombo/Vodka_chocolate_bottle_final.jpeg`,
     mobilePoster: `${import.meta.env.BASE_URL}assets/tombo/mobile/vodka_choclate.jpeg`,
-    specs: { abv: '17%', aging: 'Cocoa Infused', character: 'Rich & Velvety' }
+    specs: { abv: '42%', aging: 'Cocoa Infused', character: 'Rich & Velvety' }
   },
   {
     id: 'cream',
-    name: 'Irish Cream',
-    title: 'Irish Cream',
+    name: 'Tombo Crimica',
+    title: 'Tombo Crimica',
     tag: 'Tombo Premium Range',
     desc: 'A luscious harmony of fresh natural dairy cream, fine spirits, and hints of vanilla and cocoa for a smooth, velvety pour.',
     video: `${import.meta.env.BASE_URL}assets/tombo/cremica.mp4`,
     poster: `${import.meta.env.BASE_URL}assets/tombo/cremica.jpeg`,
     mobilePoster: `${import.meta.env.BASE_URL}assets/tombo/mobile/cremica.jpeg`,
-    specs: { abv: '17%', aging: 'Dairy Cream Blend', character: 'Silky & Creamy' }
+    specs: { abv: '15%', aging: 'Dairy Cream Blend', character: 'Silky & Creamy' }
   },
   {
     id: 'bitters',
@@ -58,7 +58,7 @@ const SLIDES = [
     video: `${import.meta.env.BASE_URL}assets/tombo/Bitters.mp4`,
     poster: `${import.meta.env.BASE_URL}assets/tombo/bitters.jpeg`,
     mobilePoster: `${import.meta.env.BASE_URL}assets/tombo/mobile/bitters.jpeg`,
-    specs: { abv: '35%', aging: '27 Botanicals', character: 'Bold & Complex' }
+    specs: { aging: '27 Botanicals', character: 'Bold & Complex' }
   }
 ];
 
@@ -229,6 +229,11 @@ const TomboPage = () => {
             exit={{ y: "-100vh" }}
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
           >
+            <Link to="/products" className="tombo-curtain-back">
+              <ArrowLeft size={18} />
+              <span>Back to Products</span>
+            </Link>
+
             <motion.div
               className="tombo-curtain-glass"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -382,10 +387,12 @@ const TomboPage = () => {
                   
                   {/* Specifications Badge list */}
                   <div className="tombo-hero-specs" onClick={(e) => isMobile && e.stopPropagation()}>
-                    <div className="spec-badge">
-                      <span className="spec-val">{SLIDES[activeSlide].specs.abv}</span>
-                      <span className="spec-lbl">ABV Strength</span>
-                    </div>
+                    {SLIDES[activeSlide].specs.abv && (
+                      <div className="spec-badge">
+                        <span className="spec-val">{SLIDES[activeSlide].specs.abv}</span>
+                        <span className="spec-lbl">ABV Strength</span>
+                      </div>
+                    )}
                     <div className="spec-badge">
                       <span className="spec-val">{SLIDES[activeSlide].specs.aging}</span>
                       <span className="spec-lbl">Distillation</span>
@@ -397,7 +404,7 @@ const TomboPage = () => {
                   </div>
 
                   <div className="tombo-hero-actions" onClick={(e) => isMobile && e.stopPropagation()}>
-                    <Link to="/contact" className="tombo-primary-cta">
+                    <Link to="/tombo/contact" className="tombo-primary-cta">
                       Enquire Now <ArrowRight size={18} />
                     </Link>
                   </div>
@@ -456,11 +463,11 @@ const TomboPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="gold-subtitle">Our Heritage</span>
-                <h2 className="section-title">The Art of Pure Distillation</h2>
+                <span className="gold-subtitle">Our Spirit</span>
+                <h2 className="section-title">Crafted for Bold Taste and Real Moments</h2>
                 <div className="header-line"></div>
                 <p className="section-desc">
-                  Every bottle of Tombo is a testament to master craft, combining time-honored distillation traditions with select global ingredients to deliver an unparalleled tasting experience.
+                  Tombo is Agrim International Nigeria’s beverage brand created for modern consumers who enjoy bold flavour, quality, and memorable drinking experiences. From bitters and spirit-based beverages to ready-to-drink cans and cream liqueurs, Tombo blends innovation with local taste preferences to make every occasion more enjoyable.
                 </p>
               </motion.div>
 
@@ -475,8 +482,28 @@ const TomboPage = () => {
                   <div className="craft-icon-wrapper">
                     <Compass className="craft-icon" />
                   </div>
-                  <h3>Select Sourcing</h3>
-                  <p>We source only the finest botanicals, rich dark cocoa, and premium grapes from local estates and global growers.</p>
+                  <h3>Bold Flavour Profile</h3>
+                  <p className="craft-card-subdesc">
+                    Crafted with distinctive taste combinations that suit celebrations, nightlife, relaxation, and social gatherings.
+                  </p>
+                  <ul className="craft-card-list">
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Rich and memorable taste</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Modern beverage experience</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Made for social occasions</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Inspired by local preferences</span>
+                    </li>
+                  </ul>
                 </motion.div>
 
                 <motion.div
@@ -487,10 +514,30 @@ const TomboPage = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <div className="craft-icon-wrapper">
-                    <Zap className="craft-icon" />
+                    <Award className="craft-icon" />
                   </div>
-                  <h3>Copper Pot Distilled</h3>
-                  <p>Our small-batch double distillation process preserves the delicate aromatic oils and ensures absolute spirit purity.</p>
+                  <h3>Quality You Can Trust</h3>
+                  <p className="craft-card-subdesc">
+                    Tombo products are developed with a focus on consistency, reliability, and enjoyable flavour across every pack and bottle.
+                  </p>
+                  <ul className="craft-card-list">
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Consistent product quality</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Carefully developed blends</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Reliable taste experience</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Consumer-focused standards</span>
+                    </li>
+                  </ul>
                 </motion.div>
 
                 <motion.div
@@ -501,10 +548,30 @@ const TomboPage = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <div className="craft-icon-wrapper">
-                    <Award className="craft-icon" />
+                    <Zap className="craft-icon" />
                   </div>
-                  <h3>Oak Cask Maturation</h3>
-                  <p>Patiently matured in toasted oak casks, allowing the spirits to develop their signature smooth texture and deep character.</p>
+                  <h3>Made for Every Moment</h3>
+                  <p className="craft-card-subdesc">
+                    Designed for today’s consumers, Tombo brings excitement and confidence to parties, casual hangouts, celebrations, and everyday relaxation.
+                  </p>
+                  <ul className="craft-card-list">
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Perfect for celebrations</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Great for nightlife</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Suitable for relaxation</span>
+                    </li>
+                    <li>
+                      <Check className="craft-check-icon" size={14} />
+                      <span>Built for modern lifestyles</span>
+                    </li>
+                  </ul>
                 </motion.div>
               </div>
             </div>
@@ -564,7 +631,7 @@ const TomboPage = () => {
                           <div className="collection-video-preview">
                             <video poster={slide.poster} src={slide.video} muted loop playsInline autoPlay />
                             <div className="card-glass-overlay"></div>
-                            <span className="abv-tag">{slide.specs.abv} ABV</span>
+                            {slide.specs.abv && <span className="abv-tag">{slide.specs.abv} ABV</span>}
                           </div>
                           <div className="collection-card-details">
                             <h3>{slide.name}</h3>
@@ -592,10 +659,12 @@ const TomboPage = () => {
                             <p className="card-desc-back">{slide.desc}</p>
                             
                             <div className="specs-grid-back">
-                              <div className="spec-item-back">
-                                <span className="spec-label-back">ABV Strength:</span>
-                                <span className="spec-value-back">{slide.specs.abv}</span>
-                              </div>
+                              {slide.specs.abv && (
+                                <div className="spec-item-back">
+                                  <span className="spec-label-back">ABV Strength:</span>
+                                  <span className="spec-value-back">{slide.specs.abv}</span>
+                                </div>
+                              )}
                               <div className="spec-item-back">
                                 <span className="spec-label-back">Distillation:</span>
                                 <span className="spec-value-back">{slide.specs.aging}</span>
@@ -656,7 +725,7 @@ const TomboPage = () => {
                 <h2>Ready to elevate your spirits collection?</h2>
                 <p>Contact our global distribution team to enquire about partnership opportunities, bulk orders, or boutique offerings.</p>
                 <div className="cta-actions">
-                  <Link to="/contact" className="cta-gold-btn">
+                  <Link to="/tombo/contact" className="cta-gold-btn">
                     Get in Touch
                   </Link>
                   <button 

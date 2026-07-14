@@ -1,50 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowUpRight, HeartHandshake, Mail, MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer-redesigned">
       <div className="container">
-        <div className="footer-content">
-          <div className="footer-col">
-            <img src="/assets/newLogo.png" alt="Agrim Internationals Logo" className="footer-logo-inverted" />
-            <p>Your trusted partner in Fast-Moving Consumer Goods. Quality you can taste, feel, and rely on.</p>
+        <div className="footer-main-grid">
+          <div className="footer-brand-section">
+            <span className="footer-eyebrow">Agrim International Nigeria</span>
+            <h3 className="footer-brand-title">Quality products. Meaningful everyday impact.</h3>
+            <p className="footer-brand-desc">
+              Building trusted FMCG and healthcare brands for families, businesses, and communities across Africa.
+            </p>
           </div>
-          
-          <div className="footer-col">
-            <h4>Quick Links</h4>
-            <ul className="footer-links">
-              <li><Link to="/#home">Home</Link></li>
-              <li><Link to="/#products">Products</Link></li>
-              <li><Link to="/#about">About Us</Link></li>
-              <li><Link to="#">Careers</Link></li>
-            </ul>
+
+          <Link to="/social-impact" className="footer-impact-button">
+            <HeartHandshake size={20} />
+            <span>Social Impact</span>
+            <ArrowUpRight size={18} />
+          </Link>
+        </div>
+
+        <div className="footer-contact-grid">
+          <div className="footer-contact-card">
+            <div className="footer-contact-icon"><Mail size={20} /></div>
+            <div>
+              <span className="footer-contact-label">Email</span>
+              <a href="mailto:info@agriminternationals.com">info@agriminternationals.com</a>
+            </div>
           </div>
-          
-          <div className="footer-col">
-            <h4>Contact Info</h4>
-            <div className="footer-contact-item">
-              <Mail className="footer-icon" size={20} />
-              <span>info@agriminternationals.com</span>
+
+          <div className="footer-contact-card">
+            <div className="footer-contact-icon"><Phone size={20} /></div>
+            <div>
+              <span className="footer-contact-label">Phone</span>
+              <a href="tel:+15551234567">+1 (555) 123-4567</a>
             </div>
-            <div className="footer-contact-item">
-              <Phone className="footer-icon" size={20} />
-              <span>+1 (555) 123-4567</span>
-            </div>
-            <div className="footer-contact-item">
-              <MapPin className="footer-icon" size={20} />
-              <span>123 Global Trade Avenue,<br/>Business District</span>
+          </div>
+
+          <div className="footer-contact-card">
+            <div className="footer-contact-icon"><MapPin size={20} /></div>
+            <div>
+              <span className="footer-contact-label">Office</span>
+              <address>123 Global Trade Avenue, Business District</address>
             </div>
           </div>
         </div>
-        
-        <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Agrim Internationals. All rights reserved.</p>
-          <div className="footer-bottom-links">
-            <Link to="#">Privacy Policy</Link>
-            <Link to="#">Terms of Service</Link>
-          </div>
+
+        <div className="footer-copyright-row">
+          <p>© {new Date().getFullYear()} Agrim International Nigeria. All rights reserved.</p>
+          <span>Trusted brands for everyday life.</span>
         </div>
       </div>
     </footer>
