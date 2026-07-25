@@ -54,9 +54,9 @@ const ToboContactPage = () => {
                 <Mail size={20} />
                 <span>info@agriminternational.com</span>
               </a>
-              <a href="tel:+2340000000000">
+              <a href="tel:+2347035768300">
                 <Phone size={20} />
-                <span>+234 000 000 0000</span>
+                <span>+234-7035768300</span>
               </a>
               <p>
                 <MapPin size={20} />

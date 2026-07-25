@@ -51,7 +51,7 @@ const ContactForm = () => {
                 <Phone className="contact-info-icon" size={22} />
                 <div>
                   <span>Phone</span>
-                  <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                  <a href="tel:+2347035768300">+234-7035768300</a>
                 </div>
               </div>
 

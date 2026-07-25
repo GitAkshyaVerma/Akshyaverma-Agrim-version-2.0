@@ -54,9 +54,9 @@ const TomboContactPage = () => {
                 <Mail size={20} />
                 info@agriminternational.com
               </a>
-              <a href="tel:+2340000000000">
+              <a href="tel:+2347035768300">
                 <Phone size={20} />
-                +234 000 000 0000
+                +234-7035768300
               </a>
               <p>
                 <MapPin size={20} />

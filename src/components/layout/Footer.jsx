@@ -35,15 +35,15 @@ const Footer = () => {
             <div className="footer-contact-icon"><Phone size={20} /></div>
             <div>
               <span className="footer-contact-label">Phone</span>
-              <a href="tel:+15551234567">+1 (555) 123-4567</a>
+              <a href="tel:+2347035768300">+234-7035768300</a>
             </div>
           </div>
 
           <div className="footer-contact-card">
             <div className="footer-contact-icon"><MapPin size={20} /></div>
             <div>
-              <span className="footer-contact-label">Office</span>
-              <address>123 Global Trade Avenue, Business District</address>
+              <span className="footer-contact-label">Registered Office & Works</span>
+              <address>Agrim Int' free trade Zone Calabar Cross River state Nigeria, West Africa</address>
             </div>
           </div>
         </div>
