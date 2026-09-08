@@ -662,6 +662,29 @@
     }
   }
 
+  .condoms-campaign-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 2rem auto 0;
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .condoms-campaign-gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* Manufacturing Section styling */
   .manufacturing-section {
     padding: 6rem 0;

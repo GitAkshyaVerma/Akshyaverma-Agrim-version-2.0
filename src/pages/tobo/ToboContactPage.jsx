@@ -50,9 +50,9 @@ const ToboContactPage = () => {
             <div className="tobo-contact-card-badge">Taste, fun & happiness</div>
             <h2>Talk to our Tobo team</h2>
             <div className="tobo-contact-info">
-              <a href="mailto:info@agriminternational.com">
+              <a href="mailto:info@agrim.africa">
                 <Mail size={20} />
-                <span>info@agriminternational.com</span>
+                <span>info@agrim.africa</span>
               </a>
               <a href="tel:+2347035768300">
                 <Phone size={20} />

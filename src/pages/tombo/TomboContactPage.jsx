@@ -50,9 +50,9 @@ const TomboContactPage = () => {
             <span>Distribution desk</span>
             <h2>Contact our spirits team</h2>
             <div className="tombo-contact-info">
-              <a href="mailto:info@agriminternational.com">
+              <a href="mailto:info@agrim.africa">
                 <Mail size={20} />
-                info@agriminternational.com
+                info@agrim.africa
               </a>
               <a href="tel:+2347035768300">
                 <Phone size={20} />

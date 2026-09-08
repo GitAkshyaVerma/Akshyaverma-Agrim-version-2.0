@@ -11,7 +11,11 @@ const BRANDS_DATA = {
     desc: "Tango is a premium protection brand focused on promoting safety, confidence, and responsible relationships.\n\nManufactured to high quality standards, Tango products are designed to provide reliability, comfort, and confidence.",
     logo: '/assets/hygiene/image-condoms-logo.png',
     logoAlt: 'Tango Condoms',
-    image: '/assets/hygiene/tango-condom.png',
+    image: '/assets/hygiene/tango-product-range.jpg',
+    campaigns: [
+      { src: '/assets/hygiene/tango-product-range.jpg', alt: 'Tango plain and exotic chocolate condoms, pack of 3' },
+      { src: '/assets/hygiene/tango-exotic-chocolate.jpg', alt: 'Tango exotic chocolate condoms, pack of 3' }
+    ],
     variantsTitle: 'Product Range',
     variants: [
       { name: 'Premium condoms' },
@@ -31,7 +35,11 @@ const BRANDS_DATA = {
     desc: "Kuchi Kuchi is an accessible and affordable condom brand designed for mass-market consumers without compromising on quality and reliability.\n\nThe brand is positioned to offer trusted protection at affordable price points across pharmacies, supermarkets, and open markets.",
     logo: '/assets/hygiene/image-kkcondoms-logo.png',
     logoAlt: 'Kuchi Kuchi Condoms',
-    image: '/assets/hygiene/kuchi-kuchi-condom.png',
+    image: '/assets/hygiene/kuchi-strawberry-dotted.jpg',
+    campaigns: [
+      { src: '/assets/hygiene/kuchi-strawberry-dotted.jpg', alt: 'Kuchi Kuchi strawberry dotted condoms, pack of 3' },
+      { src: '/assets/hygiene/kuchi-plain.jpg', alt: 'Kuchi Kuchi plain condoms, pack of 3' }
+    ],
     variantsTitle: 'Product Benefits',
     variants: [
       { name: 'Affordable pricing' },
@@ -192,6 +200,12 @@ const CondomsPage = () => {
                     ))}
                   </div>
                 </div>
+              </div>
+
+              <div className="condoms-campaign-gallery" aria-label={`${data.title} product gallery`}>
+                {data.campaigns.map((campaign) => (
+                  <img key={campaign.src} src={campaign.src} alt={campaign.alt} />
+                ))}
               </div>
             </motion.div>
           </AnimatePresence>

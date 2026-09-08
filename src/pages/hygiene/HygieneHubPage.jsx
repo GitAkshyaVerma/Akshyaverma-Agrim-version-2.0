@@ -10,7 +10,7 @@ const BRANDS = [
     name: 'Intimate Protection',
     brandName: 'Tango & Kuchi Kuchi',
     desc: 'Advanced safety and heightened sensitivity. Premium condoms engineered for absolute confidence, protection, and sensory connection.',
-    image: '/assets/hygiene/condoms.png',
+    image: '/assets/hygiene/tango-product-range.jpg',
     link: '/hygiene/condoms',
     icon: <Activity size={28} />,
     color: '#e11d48',

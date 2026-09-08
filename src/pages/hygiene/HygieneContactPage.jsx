@@ -48,9 +48,9 @@ const HygieneContactPage = () => {
             <span>Business support</span>
             <h2>How can we help?</h2>
             <div className="hygiene-contact-info">
-              <a href="mailto:info@agriminternational.com">
+              <a href="mailto:info@agrim.africa">
                 <Mail size={20} />
-                info@agriminternational.com
+                info@agrim.africa
               </a>
               <a href="tel:+2347035768300">
                 <Phone size={20} />
