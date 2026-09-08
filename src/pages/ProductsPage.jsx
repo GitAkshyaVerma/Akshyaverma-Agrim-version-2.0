@@ -65,11 +65,13 @@ const ProductsPage = () => {
           {productsData.map((prod) => (
             <article key={prod.id} className="product-card-horizontal">
               <div className="product-card-image-wrapper">
-                <img 
-                  src={categoryImages[prod.id] || '/assets/tomato-paste.png'} 
-                  alt={prod.title} 
-                  className="product-card-image"
-                />
+                <Link to={prod.link || '/maintenance'} aria-label={`Explore ${prod.title}`}>
+                  <img 
+                    src={categoryImages[prod.id] || '/assets/tomato-paste.png'} 
+                    alt={prod.title} 
+                    className="product-card-image"
+                  />
+                </Link>
               </div>
               <div className="product-card-content">
                 <span className="product-card-eyebrow">{productMeta[prod.id]?.eyebrow}</span>

@@ -891,6 +891,7 @@ ul {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(26, 17, 11, 0) 42%, rgba(26, 17, 11, 0.28) 100%);
+  pointer-events: none;
 }
 
 .product-card-content {

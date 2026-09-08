@@ -92,11 +92,13 @@ const HygieneHubPage = () => {
               whileHover={{ y: -8 }}
               style={{ '--accent-color': brand.color, background: brand.bgGradient }}
             >
-              <div className="brand-card-inner">
-                <div className="brand-card-img-wrapper">
-                  <img src={brand.image} alt={brand.brandName} className="brand-card-image" />
-                  <div className="brand-card-overlay"></div>
-                  <span className="brand-card-tag">{brand.tag}</span>
+                <div className="brand-card-inner">
+                  <div className="brand-card-img-wrapper">
+                  <Link to={brand.link} aria-label={`Explore ${brand.brandName}`} className="brand-card-image-link">
+                    <img src={brand.image} alt={brand.brandName} className="brand-card-image" />
+                    <div className="brand-card-overlay"></div>
+                    <span className="brand-card-tag">{brand.tag}</span>
+                  </Link>
                 </div>
                 
                 <div className="brand-card-content">

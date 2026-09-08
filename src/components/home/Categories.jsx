@@ -103,11 +103,13 @@ const Categories = () => {
                     key={product.id}
                   >
                     <div className="collection-image-wrapper">
-                      <img
-                        src={categoryImages[product.id] || '/assets/tomato-paste.png'}
-                        alt={product.title}
-                        className="collection-category-img"
-                      />
+                      <Link to={product.link || '/maintenance'} aria-label={`Explore ${product.title}`}>
+                        <img
+                          src={categoryImages[product.id] || '/assets/tomato-paste.png'}
+                          alt={product.title}
+                          className="collection-category-img"
+                        />
+                      </Link>
                     </div>
                     <h3 className="collection-card-title">{product.title}</h3>
                     <p className="collection-card-desc">{product.shortDesc}</p>

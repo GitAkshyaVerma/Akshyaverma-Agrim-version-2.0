@@ -182,6 +182,11 @@
   background-color: #f1f5f9;
 }
 
+.brand-card-image-link {
+  display: block;
+  color: inherit;
+}
+
 .brand-card-image {
   width: 100%;
   height: 100%;
