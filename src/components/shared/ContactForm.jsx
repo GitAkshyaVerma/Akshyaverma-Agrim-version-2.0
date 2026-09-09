@@ -43,7 +43,7 @@ const ContactForm = () => {
                 <Mail className="contact-info-icon" size={22} />
                 <div>
                   <span>Email</span>
-                  <a href="mailto:info@agriminternationals.com">info@agriminternationals.com</a>
+                  <a href="mailto:info@agrim.africa">info@agrim.africa</a>
                 </div>
               </div>
 
@@ -51,7 +51,7 @@ const ContactForm = () => {
                 <Phone className="contact-info-icon" size={22} />
                 <div>
                   <span>Phone</span>
-                  <a href="tel:+2347035768300">+234-7035768300</a>
+                  <a href="tel:+2347035786300">+234-7035786300</a>
                 </div>
               </div>
 

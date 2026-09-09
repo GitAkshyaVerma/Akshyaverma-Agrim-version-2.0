@@ -52,9 +52,9 @@ const HygieneContactPage = () => {
                 <Mail size={20} />
                 info@agrim.africa
               </a>
-              <a href="tel:+2347035768300">
+              <a href="tel:+2347035786300">
                 <Phone size={20} />
-                +234-7035768300
+                +234-7035786300
               </a>
               <p>
                 <MapPin size={20} />

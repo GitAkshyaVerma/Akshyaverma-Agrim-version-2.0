@@ -27,7 +27,7 @@ const Footer = () => {
             <div className="footer-contact-icon"><Mail size={20} /></div>
             <div>
               <span className="footer-contact-label">Email</span>
-              <a href="mailto:info@agriminternationals.com">info@agriminternationals.com</a>
+              <a href="mailto:info@agrim.africa">info@agrim.africa</a>
             </div>
           </div>
 
@@ -35,7 +35,7 @@ const Footer = () => {
             <div className="footer-contact-icon"><Phone size={20} /></div>
             <div>
               <span className="footer-contact-label">Phone</span>
-              <a href="tel:+2347035768300">+234-7035768300</a>
+              <a href="tel:+2347035786300">+234-7035786300</a>
             </div>
           </div>
 
