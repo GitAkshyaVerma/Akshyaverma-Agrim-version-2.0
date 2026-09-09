@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const desktopHeroImages = [
-  '/assets/mainHeroSection/web/image0.jpeg',
+  '/assets/mainHeroSection/web/agrim-products-hero.jpg',
   '/assets/mainHeroSection/web/image1.png',
   '/assets/mainHeroSection/web/image2.png',
   '/assets/mainHeroSection/web/image3.png',
