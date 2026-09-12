@@ -43,7 +43,7 @@ const Footer = () => {
             <div className="footer-contact-icon"><MapPin size={20} /></div>
             <div>
               <span className="footer-contact-label">Registered Office & Works</span>
-              <address>Agrim Int' free trade Zone Calabar Cross River state Nigeria, West Africa</address>
+              <address>Agrim Int'l free trade Zone Calabar Cross River state Nigeria, West Africa</address>
             </div>
           </div>
         </div>

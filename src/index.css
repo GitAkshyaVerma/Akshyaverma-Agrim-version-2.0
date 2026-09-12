@@ -3472,6 +3472,25 @@ textarea.form-input {
   }
 }
 
+@media (min-width: 769px) {
+  .hero-slide-item:first-child .hero-slide-content {
+    text-shadow: -1px -1px 0 #fbf8f1, 1px -1px 0 #fbf8f1, -1px 1px 0 #fbf8f1, 1px 1px 0 #fbf8f1;
+  }
+
+  .hero-slide-item:first-child .hero-slide-title {
+    color: var(--color-primary);
+  }
+
+  .hero-slide-item:first-child .hero-slide-desc {
+    color: var(--color-text-main);
+    font-weight: 600;
+  }
+
+  .hero-slide-item:first-child .hero-slide-tagline {
+    color: var(--color-secondary);
+  }
+}
+
 .hero-slide-btn {
   display: inline-block;
   background: var(--color-secondary);
