@@ -43,6 +43,13 @@ export default async function handler(request, response) {
     .map(([label, value]) => `<tr><td style="padding:8px;border:1px solid #ddd;font-weight:600">${escapeHtml(label)}</td><td style="padding:8px;border:1px solid #ddd">${escapeHtml(value)}</td></tr>`)
     .join('');
   const replyTo = emailPattern.test(contact) ? contact : undefined;
+  // Keep the configured sending address, replacing only its display name.
+  const configuredFrom = process.env.CONTACT_FROM.trim();
+  const senderAddress = configuredFrom.match(/<([^<>]+)>\s*$/)?.[1]?.trim() || configuredFrom;
+  const senderName = Array.from(name, (character) =>
+    character.charCodeAt(0) < 32 || character.charCodeAt(0) === 127 ? ' ' : character
+  ).join('').trim() || 'Website visitor';
+  const quotedSenderName = senderName.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 
   let resendResponse;
   try {
@@ -53,7 +60,7 @@ export default async function handler(request, response) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: process.env.CONTACT_FROM,
+      from: `"${quotedSenderName}" <${senderAddress}>`,
       to: [process.env.CONTACT_TO || 'info@agrim.africa'],
       reply_to: replyTo,
       subject: `New ${source} enquiry from ${name}`,
