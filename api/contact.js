@@ -28,8 +28,14 @@ export default async function handler(request, response) {
     return response.status(400).json({ error: 'Please complete your name, contact details and message.' });
   }
 
-  if (!process.env.RESEND_API_KEY || !process.env.CONTACT_FROM) {
-    return response.status(500).json({ error: 'Email delivery has not been configured yet.' });
+  const missingConfiguration = ['RESEND_API_KEY', 'CONTACT_FROM']
+    .filter((key) => !process.env[key]?.trim());
+  if (missingConfiguration.length) {
+    console.error('Contact email configuration missing:', missingConfiguration.join(', '));
+    return response.status(500).json({
+      error: 'Email delivery is unavailable. Please contact info@agrim.africa directly.',
+      code: 'EMAIL_CONFIG_MISSING',
+    });
   }
 
   const fieldRows = Object.entries(fields)
