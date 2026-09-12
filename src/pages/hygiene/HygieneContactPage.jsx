@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Baby, Heart, Mail, MapPin, Phone, ShieldCheck } from 'lucide-react';
 import './HygieneContactPage.css';
+import { sendInquiry } from '../../lib/contact';
 
 const hygieneLines = [
   {
@@ -22,6 +23,14 @@ const hygieneLines = [
 ];
 
 const HygieneContactPage = () => {
+  const [status, setStatus] = useState('');
+  const [isSending, setIsSending] = useState(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget; setIsSending(true); setStatus('');
+    try { await sendInquiry('Hygiene', form); form.reset(); setStatus('Thanks — your enquiry has been sent.'); }
+    catch (error) { setStatus(error.message); } finally { setIsSending(false); }
+  };
   return (
     <div className="hygiene-contact-page">
       <nav className="hygiene-contact-nav">
@@ -84,7 +93,7 @@ const HygieneContactPage = () => {
             </p>
           </div>
 
-          <form className="hygiene-contact-form" onSubmit={(event) => event.preventDefault()}>
+          <form className="hygiene-contact-form" onSubmit={handleSubmit}>
             <div className="hygiene-contact-row">
               <label>
                 Name
@@ -115,9 +124,10 @@ const HygieneContactPage = () => {
               Message
               <textarea name="message" rows="5" placeholder="Share quantity, retail channel, partnership interest or product question." />
             </label>
-            <button type="submit">
-              Send hygiene enquiry <ArrowRight size={18} />
+            <button type="submit" disabled={isSending}>
+              {isSending ? 'Sending...' : 'Send hygiene enquiry'} <ArrowRight size={18} />
             </button>
+            {status && <p role="status">{status}</p>}
           </form>
         </section>
       </main>

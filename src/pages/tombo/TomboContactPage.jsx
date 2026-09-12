@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Award, Building2, Mail, MapPin, Phone, Send, Wine } from 'lucide-react';
 import './TomboContactPage.css';
+import { useState } from 'react';
+import { sendInquiry } from '../../lib/contact';
 
 const tomboSupport = [
   {
@@ -21,6 +23,14 @@ const tomboSupport = [
 ];
 
 const TomboContactPage = () => {
+  const [status, setStatus] = useState('');
+  const [isSending, setIsSending] = useState(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget; setIsSending(true); setStatus('');
+    try { await sendInquiry('Tombo', form); form.reset(); setStatus('Thanks — your enquiry has been sent.'); }
+    catch (error) { setStatus(error.message); } finally { setIsSending(false); }
+  };
   return (
     <div className="tombo-contact-page">
       <header className="tombo-contact-header">
@@ -86,7 +96,7 @@ const TomboContactPage = () => {
             </p>
           </div>
 
-          <form className="tombo-contact-form" onSubmit={(event) => event.preventDefault()}>
+          <form className="tombo-contact-form" onSubmit={handleSubmit}>
             <div className="tombo-contact-row">
               <label>
                 Name
@@ -124,9 +134,10 @@ const TomboContactPage = () => {
               Message
               <textarea name="message" rows="5" placeholder="Tell us your city, quantity, distribution interest or partnership request." />
             </label>
-            <button type="submit">
-              Send Tombo enquiry <ArrowRight size={18} />
+            <button type="submit" disabled={isSending}>
+              {isSending ? 'Sending...' : 'Send Tombo enquiry'} <ArrowRight size={18} />
             </button>
+            {status && <p role="status">{status}</p>}
           </form>
         </section>
       </main>

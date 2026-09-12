@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './TopistoPage.css';
+import { sendInquiry } from '../../lib/contact';
 const MARQUEE_TEXTS = [
   "Rich Taste With Radiant Colour",
   "Rooted In Nigerian Flavours",
@@ -15,6 +16,24 @@ const TopistoPage = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isCommunityCareOpen, setIsCommunityCareOpen] = useState(false);
   const [isEnquireOpen, setIsEnquireOpen] = useState(false);
+  const [enquiryStatus, setEnquiryStatus] = useState('');
+  const [isSending, setIsSending] = useState(false);
+  const handleEnquiry = async (event) => {
+    event.preventDefault();
+    if (isSending) return;
+    const form = event.currentTarget;
+    setIsSending(true);
+    setEnquiryStatus('');
+    try {
+      await sendInquiry('Topisto', form);
+      form.reset();
+      setEnquiryStatus('Thank you! Your enquiry has been sent.');
+    } catch (error) {
+      setEnquiryStatus(error.message);
+    } finally {
+      setIsSending(false);
+    }
+  };
   const [activeFlavourIndex, setActiveFlavourIndex] = useState(0);
 
   useEffect(() => {
@@ -394,26 +413,26 @@ const TopistoPage = () => {
                 <h2 className="about-modal-title">Enquire Now</h2>
                 <p className="enquire-subtitle">Interested in Topisto for your home or business? Send us a message and our team will get back to you shortly.</p>
 
-                <form className="enquire-form" onSubmit={(e) => { e.preventDefault(); alert('Thank you for your enquiry! Our team will get back to you soon.'); setIsEnquireOpen(false); }}>
+                <form className="enquire-form" onSubmit={handleEnquiry}>
                   <div className="form-group">
                     <label htmlFor="fullName">Full Name</label>
-                    <input type="text" id="fullName" required placeholder="Enter your full name" />
+                    <input type="text" id="fullName" name="name" required placeholder="Enter your full name" />
                   </div>
 
                   <div className="form-group-row">
                     <div className="form-group">
                       <label htmlFor="email">Email Address</label>
-                      <input type="email" id="email" required placeholder="name@example.com" />
+                      <input type="email" id="email" name="contact" required placeholder="name@example.com" />
                     </div>
                     <div className="form-group">
                       <label htmlFor="phone">Phone Number</label>
-                      <input type="tel" id="phone" required placeholder="e.g. +234..." />
+                      <input type="tel" id="phone" name="phone" required placeholder="e.g. +234..." />
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="interest">Interested In</label>
-                    <select id="interest" required defaultValue="tomato-paste">
+                    <select id="interest" name="interest" required defaultValue="tomato-paste">
                       <option value="tomato-paste">Topisto Tomato Paste / Mix</option>
                       <option value="distribution">Distribution / Partnership</option>
                       <option value="bulk-order">Bulk / Commercial Order</option>
@@ -423,12 +442,13 @@ const TopistoPage = () => {
 
                   <div className="form-group">
                     <label htmlFor="message">Your Message</label>
-                    <textarea id="message" rows="4" required placeholder="Describe your requirement in detail..."></textarea>
+                    <textarea id="message" name="message" rows="4" required placeholder="Describe your requirement in detail..."></textarea>
                   </div>
 
-                  <button type="submit" className="btn-submit-enquiry">
-                    Submit Enquiry
+                  <button type="submit" className="btn-submit-enquiry" disabled={isSending}>
+                    {isSending ? 'Sending...' : 'Submit Enquiry'}
                   </button>
+                  {enquiryStatus && <p role="status">{enquiryStatus}</p>}
                 </form>
               </div>
             </motion.div>

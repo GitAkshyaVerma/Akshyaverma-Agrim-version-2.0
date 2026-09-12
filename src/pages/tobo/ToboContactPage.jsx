@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Mail, MapPin, Phone, Send, Sparkles, Store } from 'lucide-react';
 import './ToboContactPage.css';
+import { useState } from 'react';
+import { sendInquiry } from '../../lib/contact';
 
 const toboContactCards = [
   {
@@ -21,6 +23,14 @@ const toboContactCards = [
 ];
 
 const ToboContactPage = () => {
+  const [status, setStatus] = useState('');
+  const [isSending, setIsSending] = useState(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget; setIsSending(true); setStatus('');
+    try { await sendInquiry('Tobo', form); form.reset(); setStatus('Thanks — your enquiry has been sent.'); }
+    catch (error) { setStatus(error.message); } finally { setIsSending(false); }
+  };
   return (
     <div className="tobo-contact-page">
       <header className="tobo-contact-header">
@@ -86,7 +96,7 @@ const ToboContactPage = () => {
             </p>
           </div>
 
-          <form className="tobo-contact-form" onSubmit={(event) => event.preventDefault()}>
+          <form className="tobo-contact-form" onSubmit={handleSubmit}>
             <label>
               Name
               <input type="text" name="name" placeholder="Your full name" />
@@ -103,9 +113,10 @@ const ToboContactPage = () => {
               Enquiry
               <textarea name="message" rows="5" placeholder="Tell us about products, quantity, city or distribution interest." />
             </label>
-            <button type="submit">
-              Send Tobo enquiry <ArrowRight size={18} />
+            <button type="submit" disabled={isSending}>
+              {isSending ? 'Sending...' : 'Send Tobo enquiry'} <ArrowRight size={18} />
             </button>
+            {status && <p role="status">{status}</p>}
           </form>
         </section>
       </main>

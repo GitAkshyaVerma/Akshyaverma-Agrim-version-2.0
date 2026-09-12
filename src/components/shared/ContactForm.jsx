@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Camera, ArrowRight, Building2, MessageSquareText } from 'lucide-react';
+import { sendInquiry } from '../../lib/contact';
 
 const contactHighlights = [
   'Distribution partnerships',
@@ -8,6 +9,25 @@ const contactHighlights = [
 ];
 
 const ContactForm = () => {
+  const [status, setStatus] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setIsSending(true);
+    setStatus('');
+    try {
+      await sendInquiry('General business', form);
+      form.reset();
+      setStatus('Thanks — your enquiry has been sent.');
+    } catch (error) {
+      setStatus(error.message);
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <section className="contact" id="contact">
       <div className="container">
@@ -102,25 +122,25 @@ const ContactForm = () => {
                 <h2>How can we help?</h2>
               </div>
             </div>
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="contact-form-row">
                 <div className="form-group">
                   <label htmlFor="name">Full Name</label>
-                  <input type="text" id="name" className="form-input" placeholder="Your name" required />
+                  <input type="text" id="name" name="name" className="form-input" placeholder="Your name" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="company">Company Name</label>
-                  <input type="text" id="company" className="form-input" placeholder="Your company" required />
+                  <input type="text" id="company" name="company" className="form-input" placeholder="Your company" required />
                 </div>
               </div>
               <div className="contact-form-row">
                 <div className="form-group">
                   <label htmlFor="email">Email Address</label>
-                  <input type="email" id="email" className="form-input" placeholder="Your email" required />
+                  <input type="email" id="email" name="contact" className="form-input" placeholder="Your email" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="region">Region</label>
-                  <select id="region" className="form-input" required>
+                  <select id="region" name="region" className="form-input" required>
                     <option value="">Select region</option>
                     <option value="africa">Africa</option>
                     <option value="asia">Asia</option>
@@ -133,12 +153,13 @@ const ContactForm = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="message">Message</label>
-                <textarea id="message" className="form-input" placeholder="How can we help you?" required></textarea>
+                <textarea id="message" name="message" className="form-input" placeholder="How can we help you?" required></textarea>
               </div>
-              <button type="submit" className="btn-b2b-submit">
-                Send Message
+              <button type="submit" className="btn-b2b-submit" disabled={isSending}>
+                {isSending ? 'Sending...' : 'Send Message'}
                 <ArrowRight size={18} />
               </button>
+              {status && <p role="status">{status}</p>}
             </form>
           </div>
 

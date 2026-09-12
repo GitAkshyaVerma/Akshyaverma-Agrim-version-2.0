@@ -1,5 +1,24 @@
 # React + Vite
 
+## Enquiry email setup
+
+All enquiry forms submit to `/api/contact`, a Vercel server function using Resend.
+Configure these server environment variables in the hosting project before deploying:
+
+- `RESEND_API_KEY`: a Resend API key with permission to send email.
+- `CONTACT_FROM`: a sender address on a domain verified in Resend, for example `Agrim Website <enquiries@agrim.africa>` once that domain is verified.
+- `CONTACT_TO`: `info@agrim.africa` (also the default when omitted).
+
+Redeploy after changing the environment variables. Never put the API key in a
+`VITE_` variable or frontend code. A static-only upload of `dist` cannot run the
+email function; deploy the project with its `api` directory. Plain `npm run dev`
+only serves the frontend, so test the function on a Vercel deployment or with Vercel's local runtime.
+
+For delivery problems, inspect the `/api/contact` response and hosting function
+logs, then check Resend's email delivery logs. An accepted API request does not
+guarantee inbox delivery; verify delivery status and the recipient spam folder.
+Provider reference: https://resend.com/docs/api-reference/emails/send-email
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
